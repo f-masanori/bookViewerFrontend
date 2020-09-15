@@ -12,7 +12,9 @@ export interface BookForViewerState {
 }
 
 export const initialState: BookForViewerState = {
-  bookForViewer: {},
+  bookForViewer: {
+    pageForViewer: [],
+  },
   isLoading: false,
 };
 
@@ -29,7 +31,7 @@ export const bookForViewerReducer: Reducer<
     case ActionType.GET_BOOKFORVIEWER_START:
       return {
         ...state,
-        bookForViewer: {},
+        bookForViewer: { pageForViewer: [] },
         isLoading: true,
       };
     case ActionType.GET_BOOKFORVIEWER_SUCCEED:

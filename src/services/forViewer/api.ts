@@ -22,7 +22,25 @@ export const getBookDataForViewer = (optionConfig?: ApiConfig) => {
 
   const getBookData = async (bookID: number) => {
     // ここでapiを叩いてデータを取得する
-    const bookForViewer: BookForViewer = {};
+    const bookForViewer: BookForViewer = {
+      pageForViewer: [
+        {
+          chapterId: 1,
+          pages: [
+            {
+              pageId: 1,
+              sentences: [
+                {
+                  sentenceId: 1,
+                  content: 'hogehoge',
+                  questions: false, // (あり:0, なし:1)
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
 
     return bookForViewer;
   };

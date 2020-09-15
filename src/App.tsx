@@ -2,7 +2,9 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect, Switch } from 'react-router';
-import Viewer from './container/BookViewer';
+import Viewer from './component/pages/BookViewer';
+import Home from './component/pages/Home';
+
 import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {
@@ -10,7 +12,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/viewer" component={Viewer} />
-        <Route exact path="/" component={Viewer} />
+        <Route exact path="/" component={Home} />
       </Switch>
     </Router>
   );
