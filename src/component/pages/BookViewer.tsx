@@ -6,7 +6,10 @@ import {
   bookForViewerReducer,
   BookForViewerState,
 } from '../../reducer/bookForViewer';
+import { ConbineState } from '../../reducer/index';
 import { getBookForViewer } from '../../actions/bookForViewer';
+
+import ViewerHeader from '../organisms/header';
 
 export interface BookViewerProps {
   bookForViewer: BookForViewer;
@@ -15,6 +18,7 @@ export interface BookViewerProps {
 
 /* 本当はpropsの型を指定したいけど,routerが入っているのでanyにしている
 他にいいやり方がありそう？ */
+
 const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   // console.log(bookForViewer);
   useEffect(() => {
@@ -23,11 +27,16 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const bookForViewerSelector = useSelector(
-    (state: BookForViewerState) => state.bookForViewer,
+    (state: ConbineState) => state.bookForViewer,
   );
   console.log(bookForViewerSelector);
 
-  return <div>viewer</div>;
+  return <ViewerHeader />;
 };
 
 export default withRouter(BookViewer);
+
+/*
+コンテナコンポーネントではなくて
+useDispatch,useSelectorを使用
+*/
