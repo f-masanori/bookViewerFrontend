@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import { Redirect, Switch } from 'react-router';
-import Viewer from './component/pages/BookViewer';
+import Viewer from './container/BookViewer';
 import 'semantic-ui-css/semantic.min.css';
 
 const App = () => {

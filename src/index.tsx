@@ -7,7 +7,7 @@ import createSagaMiddleware from 'redux-saga';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import reducer from './reducer/index';
-import rootSaga from './sagas/github';
+import rootSaga from './sagas/bookViewer';
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(reducer, applyMiddleware(sagaMiddleWare));
@@ -22,3 +22,6 @@ ReactDOM.render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
 serviceWorker.unregister();
+// reduxの監視
+// ActionがdispatchされてからReducerの処理が実行されるまでの間に、処理を挿入できる
+sagaMiddleWare.run(rootSaga);
