@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import { BrowserRouter } from 'react-router-dom';
 import createSagaMiddleware from 'redux-saga';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import reducer from './reducer/index';
 import rootSaga from './sagas/bookViewer';
+import 'semantic-ui-css/semantic.min.css';
 
 const sagaMiddleWare = createSagaMiddleware();
 const store = createStore(reducer, applyMiddleware(sagaMiddleWare));
