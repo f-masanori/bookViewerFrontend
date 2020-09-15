@@ -24,8 +24,6 @@ export const bookForViewerReducer: Reducer<
   action: BookForViewerAction,
 ): BookForViewerState => {
   console.log('reducer');
-  console.log(state);
-  console.log(action);
 
   switch (action.type) {
     case ActionType.GET_BOOKFORVIEWER_START:

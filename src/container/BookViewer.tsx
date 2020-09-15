@@ -26,8 +26,6 @@ mapStateToPropsはreduxのstate(グローバルステートのようなもの)�
 コンポーネントに流したいステートだけを決める
 */
 const mapStateToProps = (state: ConbineState): StateProps => {
-  console.log(state);
-
   return {
     bookForViewer: state.bookForViewer.bookForViewer,
     isLoading: state.bookForViewer.isLoading,
@@ -71,9 +69,9 @@ const BookViewerContainer: FC<EnhancedMembersProps> = ({
   getBookForViewerStart,
 }) => {
   const bookID = 0;
-
+  console.warn(isLoading);
   useEffect(() => {
-    console.log(bookForViewer);
+    console.log('useEffect');
     getBookForViewerStart(bookID);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
