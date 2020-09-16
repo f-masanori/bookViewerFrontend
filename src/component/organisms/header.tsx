@@ -2,7 +2,7 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Menu, Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
 
-const ViewerHeader = (setVisible: any): JSX.Element => {
+const ViewerHeader: React.FC<any> = ({ setVisible }): JSX.Element => {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -57,7 +57,14 @@ const ViewerHeader = (setVisible: any): JSX.Element => {
             </Modal>
           </Menu.Item>
           <Menu.Item>
-            <Button onClick={() => setVisible(true)}> 質問リスト</Button>
+            <Button
+              onClick={() => {
+                setVisible(true);
+              }}
+            >
+              {' '}
+              質問リスト
+            </Button>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
