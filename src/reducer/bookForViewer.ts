@@ -6,6 +6,7 @@ import * as ActionType from '../actions/bookForViewerConstants';
 import { BookForViewer } from '../services/forViewer/models';
 
 export interface BookForViewerState {
+  // bookidつける
   bookForViewer: BookForViewer;
   isLoading: boolean;
   error?: AxiosError | null;

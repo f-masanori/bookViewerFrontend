@@ -32,7 +32,31 @@ export const getBookDataForViewer = (optionConfig?: ApiConfig) => {
               sentences: [
                 {
                   sentenceId: 1,
-                  content: 'hogehoge',
+                  content:
+                    'React (リアクト) は、Facebookとコミュニティによって開発されているユーザインタフェース構築のためのJavaScriptライブラリである。',
+                  questions: false, // (あり:0, なし:1)
+                },
+                {
+                  sentenceId: 2,
+                  content: 'React.jsまたはReactJSの名称でも知られている。',
+                  questions: false, // (あり:0, なし:1)
+                },
+                {
+                  sentenceId: 3,
+                  content:
+                    'ですがサーバーサイドではセッションを使うことによって可能になります。',
+                  questions: false, // (あり:0, なし:1)
+                },
+                {
+                  sentenceId: 4,
+                  content:
+                    'クライアントのJavaScriptを使ってる場合、ページを超えての値の保持はできません。',
+                  questions: false, // (あり:0, なし:1)
+                },
+                {
+                  sentenceId: 5,
+                  content:
+                    'セッションはサーバーサイドで値を保持できる機能です。',
                   questions: false, // (あり:0, なし:1)
                 },
               ],
