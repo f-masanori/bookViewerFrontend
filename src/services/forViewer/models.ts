@@ -40,13 +40,14 @@ export interface QuestionDetail {
   content: string;
 }
 
-export interface QuestionList {
-  questions: {
-    qustionId: number;
-    userName: string;
-    title: string;
-    createdAt: string;
-  }[];
+export interface BookQuestionList {
+  questions: BookQuestionForList[];
+}
+export interface BookQuestionForList {
+  qustionId: number;
+  userName: string;
+  title: string;
+  createdAt: string;
 }
 
 // 回答のモデルはまとめて、読者と著者はisAuthorやuserName等で判断するのもあり？

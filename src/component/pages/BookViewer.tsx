@@ -22,7 +22,7 @@ import { getBookForViewer } from '../../actions/bookForViewer';
 
 import ViewerHeader from '../organisms/header';
 import Viewer from '../organisms/viewer';
-import { QuestionSidebar } from '../organisms/sidebar';
+import { QuestionList } from '../organisms/questionList';
 
 export interface BookViewerProps {
   bookForViewer: BookForViewer;
@@ -34,9 +34,10 @@ export interface BookViewerProps {
 
 const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   // console.log(bookForViewer);
+  const dispatch = useDispatch();
   useEffect(() => {
     console.log('useEffect');
-    getBookForViewer.start({ bookID: 0 });
+    dispatch(getBookForViewer.start({ bookID: 0 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const bookForViewerSelector = useSelector(
@@ -46,59 +47,34 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <Grid columns={1}>
-      <Grid.Column>
-        <div>
-          <Button primary>Primary</Button>
-          <Button onClick={() => setVisible(true)}>Secondary</Button>
-        </div>
-        {/* <Checkbox
-        checked={visible}
-        label={{ children: <code>visible</code> }}
-        onChange={(e, data) => setVisible(data.checked)}
-      /> */}
-      </Grid.Column>
+    <>
+      <ViewerHeader setVisible={(on: any) => setVisible(on)} />
+      <Grid columns={1}>
+        <Grid.Column>
+          <Sidebar.Pushable as={Segment}>
+            <Sidebar
+              as={Menu}
+              animation="overlay"
+              icon="labeled"
+              inverted
+              onHide={() => setVisible(false)}
+              vertical
+              visible={visible}
+              width="very wide"
+              direction="right"
+            >
+              <QuestionList />
+            </Sidebar>
 
-      <Grid.Column>
-        <Sidebar.Pushable as={Segment}>
-          <Sidebar
-            as={Menu}
-            animation="overlay"
-            icon="labeled"
-            inverted
-            onHide={() => setVisible(false)}
-            vertical
-            visible={visible}
-            width="very wide"
-          >
-            <Menu.Item as="a">
-              <Icon name="home" />
-              Home
-            </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="gamepad" />
-              Games
-            </Menu.Item>
-            <Menu.Item as="a">
-              <Icon name="camera" />
-              Channels
-            </Menu.Item>
-            <div>hoge</div>
-          </Sidebar>
-
-          <Sidebar.Pusher>
-            <Segment basic>
-              <ViewerHeader setVisible={setVisible} />;
-              <Viewer book={bookForViewerSelector.bookForViewer} />
-            </Segment>
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
-      </Grid.Column>
-    </Grid>
-    // <>
-    //   <ViewerHeader />
-    //   <QuestionSidebar />
-    // </>
+            <Sidebar.Pusher>
+              <Segment basic>
+                <Viewer book={bookForViewerSelector.bookForViewer} />
+              </Segment>
+            </Sidebar.Pusher>
+          </Sidebar.Pushable>
+        </Grid.Column>
+      </Grid>
+    </>
   );
 };
 

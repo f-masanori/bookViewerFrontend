@@ -11,7 +11,7 @@ import {
   Button,
 } from 'semantic-ui-react';
 
-export const QuestionSidebar = () => {
+export const QuestionSidebar: React.FC<any> = (): JSX.Element => {
   const [visible, setVisible] = useState(false);
 
   return (

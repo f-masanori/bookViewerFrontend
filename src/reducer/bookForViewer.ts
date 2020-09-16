@@ -36,6 +36,8 @@ export const bookForViewerReducer: Reducer<
         isLoading: true,
       };
     case ActionType.GET_BOOKFORVIEWER_SUCCEED:
+      console.log('reducGET_BOOKFORVIEWER_SUCCEEDer');
+
       return {
         ...state,
         bookForViewer: action.payload.result.bookForViewer,
