@@ -2,11 +2,11 @@ import { AxiosError } from 'axios';
 import * as ActionType from './bookQuestionConstants';
 import { BookQuestionList } from '../services/forViewer/models';
 
-interface GetBookQuestionListParams {
-  chapterID: number;
+export interface GetBookQuestionListParams {
+  chapterId: number;
 }
-interface GetBookQuestionListResult {
-  BookQuestionList: BookQuestionList;
+export interface GetBookQuestionListResult {
+  bookQuestionList: BookQuestionList;
 }
 
 export const getBookQuestionList = {
@@ -30,7 +30,7 @@ export const getBookQuestionList = {
   }),
 };
 
-export type BookQuestionListAction =
+export type BookQuestionAction =
   | ReturnType<typeof getBookQuestionList.start>
   | ReturnType<typeof getBookQuestionList.succeed>
   | ReturnType<typeof getBookQuestionList.fail>;

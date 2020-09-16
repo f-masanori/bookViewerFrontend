@@ -1,17 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Checkbox,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-  Button,
-} from 'semantic-ui-react';
+import { Grid, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import { BookForViewer } from '../../services/forViewer/models';
 import {
   bookForViewerReducer,
@@ -19,6 +9,7 @@ import {
 } from '../../reducer/bookForViewer';
 import { ConbineState } from '../../reducer/index';
 import { getBookForViewer } from '../../actions/bookForViewer';
+import { getBookQuestionList } from '../../actions/bookQuestion';
 
 import ViewerHeader from '../organisms/header';
 import Viewer from '../organisms/viewer';
@@ -33,17 +24,17 @@ export interface BookViewerProps {
 他にいいやり方がありそう？ */
 
 const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
-  // console.log(bookForViewer);
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('useEffect');
     dispatch(getBookForViewer.start({ bookID: 0 }));
+    dispatch(getBookQuestionList.start({ chapterId: 1 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const bookForViewerSelector = useSelector(
-    (state: ConbineState) => state.bookForViewer,
-  );
-  console.log(bookForViewerSelector);
+  /*                  ↑のコメントアウトは認識されてる         */
+  const reduxState = useSelector((state: ConbineState) => state);
+  const bookForViewerState = reduxState.bookForViewer;
+  const bookQuestionState = reduxState.bookQuestion;
+  console.log(bookQuestionState);
   const [visible, setVisible] = useState(false);
 
   return (
@@ -68,7 +59,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
 
             <Sidebar.Pusher>
               <Segment basic>
-                <Viewer book={bookForViewerSelector.bookForViewer} />
+                <Viewer book={bookForViewerState.bookForViewer} />
               </Segment>
             </Sidebar.Pusher>
           </Sidebar.Pushable>

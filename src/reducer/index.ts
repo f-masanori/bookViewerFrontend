@@ -1,14 +1,15 @@
 import { combineReducers } from 'redux';
 import { bookForViewerReducer, BookForViewerState } from './bookForViewer';
+import { bookQuestionReducer, BookQuestionState } from './bookQuestion';
 
 export interface ConbineState {
   bookForViewer: BookForViewerState;
-  // bookForViewer2: BookForViewerState2; 二個目以降はここに追加していく
+  bookQuestion: BookQuestionState;
 }
 
 const rootReducer = combineReducers({
   bookForViewer: bookForViewerReducer,
-  // bookForViewer2: bookForViewerReducer2,
+  bookQuestion: bookQuestionReducer,
 });
 
 export default rootReducer;

@@ -4,8 +4,6 @@ import { Menu, Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
 import { BookForViewer } from '../../services/forViewer/models';
 
 const Viewer: React.FC<any> = ({ book }): JSX.Element => {
-  console.log(book);
-
   return <div />;
 };
 
