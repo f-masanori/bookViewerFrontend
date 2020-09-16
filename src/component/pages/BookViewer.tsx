@@ -34,9 +34,10 @@ export interface BookViewerProps {
 
 const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   // console.log(bookForViewer);
+  const dispatch = useDispatch();
   useEffect(() => {
     console.log('useEffect');
-    getBookForViewer.start({ bookID: 0 });
+    dispatch(getBookForViewer.start({ bookID: 0 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const bookForViewerSelector = useSelector(
