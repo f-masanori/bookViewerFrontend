@@ -16,6 +16,7 @@ import {
   getBookDataForViewer,
   getBookQuestionList as apiToGetBookQuestionList,
 } from '../services/forViewer/api';
+import { answersSagas } from './getAnswers';
 
 function* runGetBookForViewer(
   action: ReturnType<typeof getBookForViewer.start>,
@@ -55,6 +56,7 @@ export default function* rootSaga() {
     bookQuestionAction.GET_BOOK_QUESTION_LIST_START,
     runGetBookQuestionList,
   );
+  yield all([...answersSagas])
 }
 
 // https://redux-saga.js.org/docs/basics/UsingSagaHelpers.html

@@ -41,9 +41,9 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   return (
     <>
       <ViewerHeader setVisible={(on: boolean) => setVisible(on)} />
-      <Grid columns={1} style={{ height: '100%' }}>
-        <Grid.Column style={{ height: '100%' }}>
-          <Sidebar.Pushable as={Segment} style={{ height: '100%' }}>
+      <Grid columns={1}>
+        <Grid.Column>
+          <Sidebar.Pushable as={Segment}>
             <Sidebar
               as={Menu}
               animation="overlay"
@@ -54,7 +54,6 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
               visible={visible}
               width="very wide"
               direction="right"
-              style={{ height: '100%' }}
             >
               {bookQuestionState.selectedQuestionId === 0 ? (
                 <QuestionList
@@ -65,8 +64,8 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
               )}
             </Sidebar>
 
-            <Sidebar.Pusher style={{ height: '100%' }}>
-              <Segment style={{ height: '100%' }}>
+            <Sidebar.Pusher>
+              <Segment basic style={{ height: 450 }}>
                 <Viewer book={bookForViewerState.bookForViewer} />
               </Segment>
             </Sidebar.Pusher>
