@@ -10,10 +10,11 @@ import {
 import { ConbineState } from '../../reducer/index';
 import { getBookForViewer } from '../../actions/bookForViewer';
 import { getBookQuestionList } from '../../actions/bookQuestion';
-
+import { Viewer } from '../organisms/viewer';
 import ViewerHeader from '../organisms/header';
-import Viewer from '../organisms/viewer';
+// import Viewer from '../organisms/viewer';
 import { QuestionList } from '../organisms/questionList';
+import { DetailQuestion } from '../organisms/detailQuestion';
 
 export interface BookViewerProps {
   bookForViewer: BookForViewer;
@@ -39,7 +40,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
 
   return (
     <>
-      <ViewerHeader setVisible={(on: any) => setVisible(on)} />
+      <ViewerHeader setVisible={(on: boolean) => setVisible(on)} />
       <Grid columns={1}>
         <Grid.Column>
           <Sidebar.Pushable as={Segment}>
@@ -54,7 +55,11 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
               width="very wide"
               direction="right"
             >
-              <QuestionList />
+              {bookQuestionState.selectedQuestionId === 0 ? (
+                <QuestionList />
+              ) : (
+                <DetailQuestion />
+              )}
             </Sidebar>
 
             <Sidebar.Pusher>

@@ -1,10 +1,44 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import { Menu, Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
-import { BookForViewer } from '../../services/forViewer/models';
+import { Dimmer, Loader, Grid, Segment } from 'semantic-ui-react';
 
-const Viewer: React.FC<any> = ({ book }): JSX.Element => {
-  return <div />;
+export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
+  console.error(book);
+
+  return (
+    <div>
+      {(() => {
+        if (book.pageForViewer.length === 0) {
+          return (
+            <Segment>
+              <Dimmer active inverted>
+                <Loader inverted>Loading</Loader>
+              </Dimmer>
+            </Segment>
+          );
+        }
+
+        return (
+          <Grid columns={2} divided>
+            <Grid.Row>
+              <Grid.Column>
+                {book.pageForViewer[0].pages[0].sentences.map(
+                  (sentence: any) => (
+                    <span>{sentence.content}</span>
+                  ),
+                )}
+              </Grid.Column>
+              <Grid.Column>
+                {book.pageForViewer[0].pages[0].sentences.map(
+                  (sentence: any) => (
+                    <span>{sentence.content}</span>
+                  ),
+                )}
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        );
+      })()}
+    </div>
+  );
 };
-
-export default Viewer;

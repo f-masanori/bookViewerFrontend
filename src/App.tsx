@@ -12,7 +12,7 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/viewer" component={Viewer} />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Viewer} />
       </Switch>
     </Router>
   );

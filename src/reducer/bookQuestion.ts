@@ -12,6 +12,7 @@ import { BookForViewer, BookQuestionList } from '../services/forViewer/models';
 export interface BookQuestionState {
   bookQuestionList: BookQuestionList;
   isLoading: boolean;
+  selectedQuestionId: number;
   error?: AxiosError | null;
 }
 
@@ -19,6 +20,7 @@ export const initialState: BookQuestionState = {
   bookQuestionList: {
     questions: [],
   },
+  selectedQuestionId: 0,
   isLoading: false,
 };
 
