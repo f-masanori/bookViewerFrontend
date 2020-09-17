@@ -63,6 +63,7 @@ export const bookQuestionReducer: Reducer<
   state: BookQuestionState = initialState,
   action: BookQuestionAction,
 ): BookQuestionState => {
+  console.log(action.type);
   switch (action.type) {
     case ActionType.GET_BOOK_QUESTION_LIST_START:
       return {
@@ -84,6 +85,8 @@ export const bookQuestionReducer: Reducer<
       };
     case ActionType.GET_BOOK_DETAIL_QUESTION_START:
       /* paramsを用いて selectedQuestionIdを変更する*/
+      console.log('gggg');
+
       return {
         ...state,
         selectedQuestionId: 1,

@@ -77,7 +77,7 @@ export const postBookQuestion = {
 
 export const getBookDetailQuestion = {
   start: (params: GetBookDetailQuestionParams) => ({
-    type: ActionType.GET_BOOK_QUESTION_LIST_START,
+    type: ActionType.GET_BOOK_DETAIL_QUESTION_START,
     payload: params,
   }),
 
