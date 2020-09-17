@@ -40,7 +40,7 @@ function* runGetBookQuestionList(
   try {
     const api = apiToGetBookQuestionList();
     const bookQuestionList = yield call(api, chapterId);
-
+    console.log(bookQuestionList);
     yield put(getBookQuestionList.succeed({ chapterId }, { bookQuestionList }));
   } catch (error) {
     yield put(getBookQuestionList.fail({ chapterId }, error));
