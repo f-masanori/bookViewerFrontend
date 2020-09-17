@@ -24,7 +24,7 @@ export interface PostQuestion {
   userId: number;
   pageNum: number;
   rowNum?: number;
-  SentenceID?: number;
+  sentenceID?: number;
   title: string;
   content: string;
 }
