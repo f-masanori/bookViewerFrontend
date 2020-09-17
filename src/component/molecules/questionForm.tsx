@@ -1,4 +1,5 @@
-import React, { useState, useDispatch } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
 import { postBookQuestion } from '../../actions/bookQuestion';
@@ -14,7 +15,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
 
   const handleSubmit = () => {
     setOpen(false);
-    dispatch(postBookQuestion.start(questionParams));
+    // dispatch(postBookQuestion.start(postQuestion: { questionParams }));
   }
   return (
     <Modal
@@ -39,23 +40,23 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
                 control={Input}
                 label="文章番号"
                 placeholder="文章番号"
-                value={questionParams.pageNum}
-                onChange={handleChange('pageNum')}
+                value={questionParams.sentenceId}
+                onChange={handleChange('sentenceId')}
               />
             </Form.Group>
             <Form.Field
               control={TextArea}
               label="質問タイトル"
               placeholder="質問タイトルをご記入下さい"
-              value={questionParams.pageNum}
-              onChange={handleChange('pageNum')}
+              value={questionParams.title}
+              onChange={handleChange('title')}
             />
             <Form.Field
               control={TextArea}
               label="質問内容"
               placeholder="質問内容をご記入下さい"
-              value={questionParams.pageNum}
-              onChange={handleChange('pageNum')}
+              value={questionParams.content}
+              onChange={handleChange('content')}
             />
           </Form>
         </Modal.Description>
