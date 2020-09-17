@@ -31,7 +31,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
             <Table.Cell>
               <Button
                 onClick={() =>
-                  dispatch(getBookDetailQuestion.start({ qustionId: 2 }))
+                  dispatch(getBookDetailQuestion.start({ questionId: 2 }))
                 }
               >
                 質問詳細へ
@@ -44,7 +44,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
             <Table.Cell>
               <Button
                 onClick={() =>
-                  dispatch(getBookDetailQuestion.start({ qustionId: 2 }))
+                  dispatch(getBookDetailQuestion.start({ questionId: 2 }))
                 }
               >
                 質問詳細へ
