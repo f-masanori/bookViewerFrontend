@@ -50,12 +50,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
                 質問詳細へ
               </Button>
             </Table.Cell>
-<<<<<<< HEAD
-            <Table.Cell>魅力を教えて</Table.Cell>
-          </Table.Row> */}
-=======
           </Table.Row>
->>>>>>> refs/remotes/origin/master
         </Table.Body>
       </Table>
     </div>
