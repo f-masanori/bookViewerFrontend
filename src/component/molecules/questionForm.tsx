@@ -17,6 +17,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const [questionParams, setQuestionParams] = useState<PostQuestion>({
     userId: 0,
     pageNum: 0,
+    rowNum: 0,
     sentenceId: 0,
     title: '',
     content: '',
