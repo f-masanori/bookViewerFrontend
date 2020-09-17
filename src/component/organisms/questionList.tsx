@@ -24,12 +24,17 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
               <Table.Cell>{question.title}</Table.Cell>
               <Table.Cell>
                 <Button
-                  onClick={() =>
+                  onClick={() => {
                     dispatch(
                       getBookDetailQuestion.start({
                         questionId: question.questionId,
-                      }),
-                    )
+                      })
+                    );
+                    dispatch({
+                      type: 'ANSWER',
+                      payload: question.questionId,
+                    });
+                  }
                   }
                 >
                   質問詳細へ

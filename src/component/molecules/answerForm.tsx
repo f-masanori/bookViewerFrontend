@@ -9,7 +9,7 @@ export const AnswerForm: React.FC<any> = (): JSX.Element => {
   const [answerParams, setAnswerParams] = useState<PostReplyParams>({
     userId: 1,
     questionId: 0,
-    content: '',
+    content: '', 
   });
   const dispatch = useDispatch();
 
