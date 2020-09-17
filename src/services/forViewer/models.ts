@@ -43,6 +43,7 @@ export interface DetailQuestion {
 export interface BookQuestionList {
   questions: BookQuestionForList[];
 }
+
 export interface BookQuestionForList {
   qustionId: number;
   userName: string;
@@ -66,4 +67,10 @@ export interface AnswersFromReader {
     content: string;
     likeNum: number;
   }[];
+}
+
+export interface PostReplyParams {
+  userId: number;
+  questionId: number;
+  content: string;
 }
