@@ -8,23 +8,6 @@ import { ConbineState } from '../../reducer/index';
 
 export const AnswerForm: React.FC<any> = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
-  const [answerParams, setAnswerParams] = useState<PostReplyParams>({
-    userId: 1,
-    questionId: 0,
-    content: '',
-  });
-  const dispatch = useDispatch();
-
-  const handleChange = (input: any) => (
-    e: React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    setAnswerParams({ ...answerParams, [input]: e.target.value });
-  };
-
-  const handleSubmit = () => {
-    setOpen(false);
-    //　ここでapi出したり、state更新したり
-  };
 
   const reduxState = useSelector((state: ConbineState) => state);
   const bookQuestionState = reduxState.bookQuestion;
