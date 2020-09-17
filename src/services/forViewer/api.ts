@@ -1,6 +1,13 @@
 import axios from 'axios';
 
-import { BookForViewer, BookQuestionList } from './models';
+import {
+  BookForViewer,
+  BookQuestionList,
+  DetailQuestion,
+  AnswersFromAuthor,
+  AnswersFromReader,
+} from './models';
+import { PostBookQuestionParams } from '../../actions/bookQuestion';
 
 interface ApiConfig {
   baseURL: string;
@@ -93,4 +100,42 @@ export const getBookQuestionList = () => {
   };
 
   return getBookQuestionListData;
+};
+
+export const getBookDetailQuestion = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const getBookDetailQuestionData = async () => {
+    const bookQuestionList: DetailQuestion = {
+      userName: 'hoge',
+      createdAt: '1888/11/11',
+      pageNum: 11,
+      title: 'string',
+      content: 'string',
+    };
+
+    return bookQuestionList;
+  };
+
+  return getBookDetailQuestionData;
+};
+
+export const postBookQuestion = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const postBookQuestionData = async (params: PostBookQuestionParams) => {
+    // ここで実際にAPIを叩く処理を実装
+    // 返り値はなし
+    return null;
+  };
+
+  return postBookQuestionData;
 };
