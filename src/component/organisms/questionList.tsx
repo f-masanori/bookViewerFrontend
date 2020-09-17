@@ -24,7 +24,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {/* {questionList.map((question: any) => (
+          {questionList.map((question: any) => (
             <Table.Row>
               <Table.Cell>question.title</Table.Cell>
               <Table.Cell>
@@ -41,7 +41,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
                 </Button>
               </Table.Cell>
             </Table.Row>
-          ))} */}
+          ))}
         </Table.Body>
       </Table>
     </div>
