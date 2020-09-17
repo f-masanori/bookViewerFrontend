@@ -71,9 +71,8 @@ export const getBookDetailQuestion = () => {
   const instance = axios.create(config);
 
   const getBookDetailQuestionData = async (questionId: number) => {
-    const bookQuestionList: DetailQuestion = await instance.get(
-      `/question/${questionId}/content`,
-    );
+    const { data } = await instance.get(`/question/${questionId}/content`);
+    const bookQuestionList: DetailQuestion = data;
 
     return bookQuestionList;
   };
@@ -109,9 +108,10 @@ export const getAnswersFromReader = () => {
   const instance = axios.create(config);
 
   const answerList = async (questionId: number) => {
-    const answersFromReader: AnswersFromReader = await instance.get(
+    const { data } = await instance.get(
       `/question/${questionId}/author/answer`,
     );
+    const answersFromReader: AnswersFromReader = data;
 
     return answersFromReader;
   };
@@ -127,9 +127,10 @@ export const getAnswersFromAuthor = () => {
   const instance = axios.create(config);
 
   const answerList = async (questionId: number) => {
-    const answersFromAuthor: AnswersFromAuthor = await instance.get(
+    const { data } = await instance.get(
       `/question/${questionId}/reader/answer`,
     );
+    const answersFromAuthor: AnswersFromAuthor = data;
 
     return answersFromAuthor;
   };
@@ -145,9 +146,8 @@ export const getPageFromQuestion = () => {
   const instance = axios.create(config);
 
   const page = async (questionId: number) => {
-    const bookPage: BookPage = await instance.get(
-      `/question/${questionId}/page`,
-    );
+    const { data } = await instance.get(`/question/${questionId}/page`);
+    const bookPage: BookPage = data;
 
     return bookPage;
   };
@@ -179,9 +179,8 @@ export const getBookQuestionListFromTitle = () => {
   const instance = axios.create(config);
 
   const getBookQuestionListData = async (title: string) => {
-    const bookQuestionList: BookQuestionList = await instance.get(
-      `/question/search/${title}`,
-    );
+    const { data } = await instance.get(`/question/search/${title}`);
+    const bookQuestionList: BookQuestionList = data;
 
     return bookQuestionList;
   };
@@ -197,9 +196,10 @@ export const getBookQuestionListFromSentence = () => {
   const instance = axios.create(config);
 
   const getBookQuestionListData = async (sentenceId: number) => {
-    const bookQuestionList: BookQuestionList = await instance.get(
+    const { data } = await instance.get(
       `/question/search/sentence/${sentenceId}`,
     );
+    const bookQuestionList: BookQuestionList = data;
 
     return bookQuestionList;
   };
