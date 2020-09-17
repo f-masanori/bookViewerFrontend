@@ -11,7 +11,6 @@ export const DetailQuestion: React.FC<any> = (
   bookQuestionState,
 ): JSX.Element => {
   const [visible, setVisible] = useState(false);
-
   console.log(bookQuestionState);
 
   const dispatch = useDispatch();
