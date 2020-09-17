@@ -18,7 +18,9 @@ interface ApiConfig {
 
 // envからの取得が出来ていない
 const DEFAULT_API_CONFIG: ApiConfig = {
-  baseURL: process.env?.REACT_APP_DEV_API_URL || 'http://localhost:8080/api',
+  baseURL:
+    process.env?.REACT_APP_DEV_API_URL ||
+    'https://book-viewer-backend.herokuapp.com/api/',
   timeout: 7000,
 };
 

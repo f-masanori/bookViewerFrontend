@@ -29,7 +29,7 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
                 )}
               </Grid.Column>
               <Grid.Column>
-                {book.pageForViewer[0].pages[0].sentences.map(
+                {book.pageForViewer[0].pages[1].sentences.map(
                   (sentence: any) => (
                     <span>{sentence.content}</span>
                   ),
