@@ -15,7 +15,6 @@ import { getBookQuestionList, postBookQuestion } from '../actions/bookQuestion';
 import {
   getBookDataForViewer,
   getBookQuestionList as apiToGetBookQuestionList,
-  postBookQuestion as apiToPostBookQuestion,
 } from '../services/forViewer/api';
 
 function* runGetBookForViewer(
@@ -46,25 +45,12 @@ function* runGetBookQuestionList(
     yield put(getBookQuestionList.fail({ chapterId }, error));
   }
 }
-function* runPostBookQuestion(
-  action: ReturnType<typeof postBookQuestion.start>,
-) {
-  const { params } = action.payload;
-
-  try {
-    const api = apiToPostBookQuestion();
-    const _ = yield call(api, params);
-  } catch (error) {
-    console.error('時間ないからエラーハンドリングはかかない');
-  }
-}
 export default function* rootSaga() {
   /*
   Action.GET_BOOKFORVIEWER_STARTのアクションが実行されたら、
   runGetBookForviewerが実行される
   */
   yield takeEvery(Action.GET_BOOKFORVIEWER_START, runGetBookForViewer);
-  yield takeEvery(bookQuestionAction.POST_BOOK_QUESTION, runPostBookQuestion);
   yield takeEvery(
     bookQuestionAction.GET_BOOK_QUESTION_LIST_START,
     runGetBookQuestionList,

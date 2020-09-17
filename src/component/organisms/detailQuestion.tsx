@@ -1,6 +1,17 @@
 import React, { useState } from 'react';
 
-import { Grid, Item, Image, Menu, Button, Tab } from 'semantic-ui-react';
+import {
+  Label,
+  Feed,
+  Card,
+  Divider,
+  Header,
+  Item,
+  Image,
+  Menu,
+  Button,
+  Tab,
+} from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AnswerForm } from '../molecules/answerForm';
@@ -17,64 +28,84 @@ export const DetailQuestion: React.FC<any> = (
 
   const panes = [
     {
-      menuItem: '著者の回答',
+      menuItem: <Label>著者の回答</Label>,
       render: () => (
-        <Tab.Pane>
+        <Tab.Pane attached={false}>
           {(() => {
             if (0) {
               return (
-                <Item.Group>
-                  <Item>
-                    <Item.Image
-                      size="tiny"
-                      src="https://react.semantic-ui.com/images/wireframe/image.png"
-                    />
-
-                    <Item.Content>
-                      <Item.Header>Header</Item.Header>
-                      <Item.Meta>Description</Item.Meta>
-                      <Item.Description>
-                        <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-                      </Item.Description>
-                      <Item.Extra>Additional Details</Item.Extra>
-                    </Item.Content>
-                  </Item>
-                </Item.Group>
+                <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                  <Card.Content>
+                    <Feed>
+                      <Feed.Event>
+                        <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                        <Feed.Content>
+                          <Feed.Date content="createdAt" />
+                          <Feed.Summary>
+                            回答内容をここに書いてください
+                          </Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    </Feed>
+                  </Card.Content>
+                </Card>
               );
             }
 
-            return <p>回答なし</p>;
+            return (
+              <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <Card.Content>
+                  <Feed>
+                    <Feed.Event>
+                      <Feed.Content>
+                        <Feed.Summary>回答がありません</Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+                  </Feed>
+                </Card.Content>
+              </Card>
+            );
           })()}
         </Tab.Pane>
       ),
     },
     {
-      menuItem: '読者の回答',
+      menuItem: <Label>著者の回答</Label>,
       render: () => (
-        <Tab.Pane>
+        <Tab.Pane attached={false}>
           {(() => {
             if (0) {
-              return <p>回答なし</p>;
+              return (
+                <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                  <Card.Content>
+                    <Feed>
+                      <Feed.Event>
+                        <Feed.Content>
+                          <Feed.Summary>回答がありません</Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    </Feed>
+                  </Card.Content>
+                </Card>
+              );
             }
 
             return (
-              <Item.Group>
-                <Item>
-                  {/* <Item.Image
-                size="tiny"
-                src="https://react.semantic-ui.com/images/wireframe/image.png"
-              /> */}
-
-                  <Item.Content>
-                    <Item.Header>Header</Item.Header>
-                    <Item.Meta>Description</Item.Meta>
-                    <Item.Description>
-                      <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-                    </Item.Description>
-                    <Item.Extra>Additional Details</Item.Extra>
-                  </Item.Content>
-                </Item>
-              </Item.Group>
+              <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <Card.Content>
+                  <Feed>
+                    <Feed.Event>
+                      <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                      <Feed.Content>
+                        <Feed.Date content="createdAt" />
+                        <Feed.Summary>
+                          回答内容をここに書いてください
+                        </Feed.Summary>
+                      </Feed.Content>
+                    </Feed.Event>
+                  </Feed>
+                </Card.Content>
+              </Card>
             );
           })()}
         </Tab.Pane>
@@ -83,7 +114,7 @@ export const DetailQuestion: React.FC<any> = (
   ];
 
   return (
-    <div style={{ backgroundColor: '#FFFFFF' }}>
+    <div style={{ backgroundColor: '#FFFFFF', height: '100%' }}>
       <Menu>
         <Button
           icon="left arrow"
@@ -91,35 +122,39 @@ export const DetailQuestion: React.FC<any> = (
             dispatch(getBookDetailQuestion.start({ questionId: 0 }))
           }
         />
-        <div style={{ textAlign: 'justify' }}>
-          <h2>1章質問詳細</h2>
-        </div>
       </Menu>
-      <Item.Group style={{ padding: '10px' }}>
-        <Item>
-          <Item.Image
-            size="tiny"
-            src="https://react.semantic-ui.com/images/wireframe/image.png"
-          />
-
-          <Item.Content>
-            <Item.Header>Header</Item.Header>
-            <Item.Meta>Description</Item.Meta>
-            <Item.Description>
-              <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-            </Item.Description>
-            <Item.Extra>Additional Details</Item.Extra>
-          </Item.Content>
-        </Item>
-      </Item.Group>
+      <Header as="h2">1章質問詳細</Header>
+      <Divider />
       <div>
+        <Card
+          style={{
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginBottom: '20px',
+          }}
+        >
+          <Card.Content>
+            <Card.Header>質問タイトル</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <Feed>
+              <Feed.Event>
+                <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                <Feed.Content>
+                  <Feed.Date content="createdAt" />
+                  <Feed.Summary>質問内容をここに書いてください</Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
+            </Feed>
+          </Card.Content>
+        </Card>
+      </div>
+      <div style={{ margin: '20px' }}>
         <CorrespondingPages contents={['fjas', 'fjio']} />
         <AnswerForm />
       </div>
 
-      <div style={{ color: 'black', padding: '10px' }}>
-        <Tab panes={panes} />
-      </div>
+      <Tab panes={panes} />
     </div>
   );
 };
