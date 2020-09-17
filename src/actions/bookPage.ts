@@ -3,26 +3,26 @@ import { AxiosError } from 'axios';
 import { BookPage } from '../services/forViewer/models';
 import * as ActionType from './bookPageContents';
 
-interface GetBookPageParams {
-  bookID: number;
+export interface GetBookPageParams {
+  chapterId: number;
 }
-interface GetBookPageResult {
-  bookSentence: BookPage;
+export interface GetBookPageResult {
+  contents: BookPage;
 }
 
 export const getBookPage = {
   start: (params: GetBookPageParams) => ({
-    type: ActionType.GET_BOOK_PAGE_LIST_START,
+    type: ActionType.GET_BOOK_PAGE_START,
     payload: params,
   }),
 
   succeed: (params: GetBookPageParams, result: GetBookPageResult) => ({
-    type: ActionType.GET_BOOK_PAGE_LIST_SUCCEED,
+    type: ActionType.GET_BOOK_PAGE_SUCCEED,
     payload: { params, result },
   }),
 
   fail: (params: GetBookPageParams, error: AxiosError) => ({
-    type: ActionType.GET_BOOK_PAGE_LIST_FAIL,
+    type: ActionType.GET_BOOK_PAGE_FAIL,
     payload: { params, error },
     error: true,
   }),
