@@ -7,6 +7,7 @@ import {
   AnswersFromAuthor,
   AnswersFromReader,
   PostReplyParams,
+  BookPage,
 } from './models';
 import { PostBookQuestionParams } from '../../actions/bookQuestion';
 
@@ -48,7 +49,7 @@ export const getBookQuestionList = () => {
   };
   const instance = axios.create(config);
 
-  const getBookQuestionListData = async (chapterId: number) =>
+  const getBookQuestionListData = async (chapterId: number) => {
     const bookQuestionList: BookQuestionList = await instance.get(
       `/chapter/${chapterId}`,
     );
@@ -133,6 +134,24 @@ export const getAnswersFromAuthor = () => {
   return answerList;
 };
 
+export const getPageFromQuestion = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const page = async (questionId: number) => {
+    const bookPage: BookPage = await instance.get(
+      `/question/${questionId}/page`,
+    );
+
+    return bookPage;
+  };
+
+  return page;
+};
+
 export const PostReply = () => {
   /* apiを叩く際の設定 */
   const config = {
@@ -176,7 +195,7 @@ export const getBookQuestionListFromSentence = () => {
 
   const getBookQuestionListData = async (sentenceId: number) => {
     const bookQuestionList: BookQuestionList = await instance.get(
-      `/question/search/sentence${sentenceId}`,
+      `/question/search/sentence/${sentenceId}`,
     );
 
     return bookQuestionList;
