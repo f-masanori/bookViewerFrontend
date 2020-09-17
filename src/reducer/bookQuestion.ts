@@ -7,6 +7,7 @@ import {
   GetBookQuestionListResult,
   GetBookDetailQuestionParams,
   GetBookDetailQuestionResult,
+  PostBookQuestionParams,
 } from '../actions/bookQuestion';
 import * as ActionType from '../actions/bookQuestionConstants';
 import {
@@ -69,7 +70,13 @@ export const bookQuestionReducer: Reducer<
     case ActionType.POST_BOOK_QUESTION:
       return {
         ...state,
-        bookQuestionList: { questions: [] },
+        // bookQuestionList: {
+        //   questions: [
+        //     ...state.bookQuestionList.questions,
+        //     ((action.payload as unknown) as PostBookQuestionParams)
+        //       .postQuestion,
+        //   ],
+        // },
         isLoading: false,
       };
     case ActionType.GET_BOOK_QUESTION_LIST_START:
