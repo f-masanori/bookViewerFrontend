@@ -44,7 +44,7 @@ export interface BookQuestionList {
   questions: BookQuestionForList[];
 }
 export interface BookQuestionForList {
-  qustionId: number;
+  questionId: number;
   userName: string;
   title: string;
   createdAt: string;

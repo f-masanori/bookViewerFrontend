@@ -6,17 +6,26 @@ import { postBookQuestion } from '../../actions/bookQuestion';
 
 export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
-  const [questionParams, setQuestionParams] = useState({ userId: 0, pageNum: 0, sentenceId: 0, title: '', content: '' });
+  const [questionParams, setQuestionParams] = useState({
+    userId: 0,
+    pageNum: 0,
+    sentenceId: 0,
+    title: '',
+    content: '',
+  });
   const dispatch = useDispatch();
 
-  const handleChange = (input: any) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (input: any) => (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setQuestionParams({ ...questionParams, [input]: e.target.value });
-  }
+  };
 
   const handleSubmit = () => {
     setOpen(false);
     // dispatch(postBookQuestion.start(postQuestion: { questionParams }));
-  }
+  };
+
   return (
     <Modal
       onClose={() => setOpen(false)}

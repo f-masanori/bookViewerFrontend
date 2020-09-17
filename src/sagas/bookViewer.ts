@@ -49,11 +49,11 @@ function* runGetBookQuestionList(
 function* runPostBookQuestion(
   action: ReturnType<typeof postBookQuestion.start>,
 ) {
-  const { payload } = action;
+  const { params } = action.payload;
 
   try {
     const api = apiToPostBookQuestion();
-    const _ = yield call(api, payload);
+    const _ = yield call(api, params);
   } catch (error) {
     console.error('時間ないからエラーハンドリングはかかない');
   }

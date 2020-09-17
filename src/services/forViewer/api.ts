@@ -88,7 +88,7 @@ export const getBookQuestionList = () => {
     const bookQuestionList: BookQuestionList = {
       questions: [
         {
-          qustionId: 2,
+          questionId: 2,
           userName: 'satousan',
           createdAt: '1777/12/11',
           title: 'これは何？',
