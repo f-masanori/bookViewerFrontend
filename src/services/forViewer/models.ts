@@ -31,7 +31,7 @@ export interface PostQuestion {
 /* 用途
 1.質問詳細を表示する時
  */
-export interface QuestionDetail {
+export interface DetailQuestion {
   userName: string;
   createdAt: string;
   pageNum: number;
