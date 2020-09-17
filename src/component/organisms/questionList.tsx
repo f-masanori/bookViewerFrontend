@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu, Divider, Table, Button } from 'semantic-ui-react';
+import { Header, Divider, Table, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
 /* このquestionListを使って質問を表示 */
@@ -9,11 +9,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
 
   return (
     <div style={{ backgroundColor: '#FFFFFF', padding: '20px' }}>
-      <Menu>
-        <div>
-          <h2>質問リスト</h2>
-        </div>
-      </Menu>
+      <Header as="h2">質問リスト</Header>
       <Divider />
       <Table basic="very">
         <Table.Header>
