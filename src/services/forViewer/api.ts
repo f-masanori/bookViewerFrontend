@@ -18,7 +18,9 @@ interface ApiConfig {
 
 // envからの取得が出来ていない
 const DEFAULT_API_CONFIG: ApiConfig = {
-  baseURL: process.env?.REACT_APP_DEV_API_URL || 'http://localhost:8080/api',
+  baseURL:
+    process.env?.REACT_APP_DEV_API_URL ||
+    'https://book-viewer-backend.herokuapp.com/api/',
   timeout: 7000,
 };
 
@@ -50,9 +52,10 @@ export const getBookQuestionList = () => {
   const instance = axios.create(config);
 
   const getBookQuestionListData = async (chapterId: number) => {
-    const bookQuestionList: BookQuestionList = await instance.get(
-      `/chapter/${chapterId}`,
-    );
+    const { data } = await instance.get(`/chapter/${chapterId}`);
+    const bookQuestionList: BookQuestionList = {
+      questions: data.questions,
+    };
 
     return bookQuestionList;
   };

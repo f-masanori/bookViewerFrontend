@@ -86,6 +86,8 @@ export const bookQuestionReducer: Reducer<
         isLoading: true,
       };
     case ActionType.GET_BOOK_QUESTION_LIST_SUCCEED:
+      console.log(action.payload);
+
       return {
         ...state,
         bookQuestionList: (action.payload as payload).result.bookQuestionList,

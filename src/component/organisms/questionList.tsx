@@ -10,7 +10,6 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
   return (
     <div style={{ backgroundColor: '#FFFFFF', padding: '20px' }}>
       <Menu>
-        <Button icon="left arrow" />
         <div>
           <h2>質問リスト</h2>
         </div>
@@ -26,11 +25,15 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
         <Table.Body>
           {questionList.map((question: any) => (
             <Table.Row>
-              <Table.Cell>question.title</Table.Cell>
+              <Table.Cell>{question.title}</Table.Cell>
               <Table.Cell>
                 <Button
                   onClick={() =>
-                    dispatch(getBookDetailQuestion.start({ questionId: question.questionId }))
+                    dispatch(
+                      getBookDetailQuestion.start({
+                        questionId: question.questionId,
+                      }),
+                    )
                   }
                 >
                   質問詳細へ
