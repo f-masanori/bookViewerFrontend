@@ -85,15 +85,15 @@ export const DetailQuestion: React.FC<any> = (
   return (
     <div style={{ backgroundColor: '#FFFFFF' }}>
       <Menu>
-        <Menu.Item>
-          <Button
-            icon="left arrow"
-            onClick={() =>
-              dispatch(getBookDetailQuestion.start({ questionId: 0 }))
-            }
-          />
-        </Menu.Item>
-        <Menu.Item>1章質問詳細</Menu.Item>
+        <Button
+          icon="left arrow"
+          onClick={() =>
+            dispatch(getBookDetailQuestion.start({ questionId: 0 }))
+          }
+        />
+        <div style={{ textAlign: 'justify' }}>
+          <h2>1章質問詳細</h2>
+        </div>
       </Menu>
       <Item.Group style={{ padding: '10px' }}>
         <Item>
