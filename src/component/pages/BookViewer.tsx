@@ -28,7 +28,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('useEffect');
-    dispatch(getBookForViewer.start({ bookID: 0 }));
+    dispatch(getBookForViewer.start({ bookID: 1 }));
     dispatch(getBookQuestionList.start({ chapterId: 1 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   /*                  ↑のコメントアウトは認識されてる         */
