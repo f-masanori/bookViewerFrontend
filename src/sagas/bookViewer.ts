@@ -49,11 +49,11 @@ function* runGetBookQuestionList(
 function* runPostBookQuestion(
   action: ReturnType<typeof postBookQuestion.start>,
 ) {
-  const { payload } = action;
+  const { params } = action.payload;
 
   try {
     const api = apiToPostBookQuestion();
-    const _ = yield call(api, payload);
+    const _ = yield call(api, params);
   } catch (error) {
     console.error('時間ないからエラーハンドリングはかかない');
   }
@@ -64,10 +64,7 @@ export default function* rootSaga() {
   runGetBookForviewerが実行される
   */
   yield takeEvery(Action.GET_BOOKFORVIEWER_START, runGetBookForViewer);
-  yield takeEvery(
-    bookQuestionAction.POST_BOOK_QUESTION_START,
-    runPostBookQuestion,
-  );
+  yield takeEvery(bookQuestionAction.POST_BOOK_QUESTION, runPostBookQuestion);
   yield takeEvery(
     bookQuestionAction.GET_BOOK_QUESTION_LIST_START,
     runGetBookQuestionList,

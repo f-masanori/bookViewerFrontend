@@ -48,7 +48,7 @@ export const getBookQuestionList = () => {
   };
   const instance = axios.create(config);
 
-  const getBookQuestionListData = async (chapterId: number) => {
+  const getBookQuestionListData = async (chapterId: number) =>
     const bookQuestionList: BookQuestionList = await instance.get(
       `/chapter/${chapterId}`,
     );

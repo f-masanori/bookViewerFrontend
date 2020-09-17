@@ -17,27 +17,28 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
             </Segment>
           );
         }
-
-        return (
-          <Grid columns={2} divided>
-            <Grid.Row>
-              <Grid.Column>
-                {book.pageForViewer[0].pages[0].sentences.map(
-                  (sentence: any) => (
-                    <span>{sentence.content}</span>
-                  ),
-                )}
-              </Grid.Column>
-              <Grid.Column>
-                {book.pageForViewer[0].pages[0].sentences.map(
-                  (sentence: any) => (
-                    <span>{sentence.content}</span>
-                  ),
-                )}
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        );
+        else {
+          return (
+            <Grid columns={2} divided>
+              <Grid.Row>
+                <Grid.Column>
+                  {book.pageForViewer[0].pages[0].sentences.map(
+                    (sentence: any) => (
+                      <span>{sentence.content}</span>
+                    ),
+                  )}
+                </Grid.Column>
+                <Grid.Column>
+                  {book.pageForViewer[0].pages[0].sentences.map(
+                    (sentence: any) => (
+                      <span>{sentence.content}</span>
+                    ),
+                  )}
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          );
+        }
       })()}
     </div>
   );
