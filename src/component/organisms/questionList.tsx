@@ -25,7 +25,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
         <Table.Body>
           {questionList.map((question: any) => (
             <Table.Row>
-              <Table.Cell>question.title</Table.Cell>
+              <Table.Cell>{question.title}</Table.Cell>
               <Table.Cell>
                 <Button
                   onClick={() =>
