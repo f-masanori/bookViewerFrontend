@@ -1,24 +1,17 @@
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import { useDispatch } from 'react-redux';
-import 'semantic-ui-css/semantic.min.css';
-import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
-import { PostReplyParams } from '../../services/forViewer/models';
-=======
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
 import { PostReplyParams } from '../../services/forViewer/models';
 import { PostReply } from '../../services/forViewer/postAPI';
 import { ConbineState } from '../../reducer/index';
->>>>>>> refs/remotes/origin/master
 
 export const AnswerForm: React.FC<any> = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
   const [answerParams, setAnswerParams] = useState<PostReplyParams>({
     userId: 1,
     questionId: 0,
-    content: '', 
+    content: '',
   });
   const dispatch = useDispatch();
 
