@@ -16,28 +16,35 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
           <Table.Row>
             <Table.HeaderCell>タイトル</Table.HeaderCell>
             <Table.HeaderCell>質問内容</Table.HeaderCell>
+            <Table.HeaderCell>詳細</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
           <Table.Row>
+            <Table.Cell>Pythonについて</Table.Cell>
+            <Table.Cell>何ができるの？</Table.Cell>
             <Table.Cell>
               <Button
                 onClick={() =>
-                  dispatch(getBookDetailQuestion.start({ qustionId: 1 }))
+                  dispatch(getBookDetailQuestion.start({ qustionId: 2 }))
                 }
               >
-                Pythonについて
+                質問詳細へ
               </Button>
             </Table.Cell>
-            <Table.Cell>具体的にできることを教えて</Table.Cell>
           </Table.Row>
           <Table.Row>
+            <Table.Cell>Pythonの特徴について</Table.Cell>
+            <Table.Cell>魅力を教えて</Table.Cell>
             <Table.Cell>
-              <Button onClick={() => console.log(2)}>
-                Pythonの特徴について
+              <Button
+                onClick={() =>
+                  dispatch(getBookDetailQuestion.start({ qustionId: 2 }))
+                }
+              >
+                質問詳細へ
               </Button>
             </Table.Cell>
-            <Table.Cell>魅力を教えて</Table.Cell>
           </Table.Row>
         </Table.Body>
       </Table>
