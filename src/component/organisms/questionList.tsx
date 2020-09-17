@@ -10,7 +10,6 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
   return (
     <div style={{ backgroundColor: '#FFFFFF', padding: '20px' }}>
       <Menu>
-        <Button icon="left arrow" />
         <div>
           <h2>質問リスト</h2>
         </div>
