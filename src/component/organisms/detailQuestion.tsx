@@ -1,19 +1,7 @@
 import React, { useState } from 'react';
-import {
-  Checkbox,
-  Grid,
-  Header,
-  Icon,
-  Item,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-  Button,
-  Tab,
-} from 'semantic-ui-react';
+import { Grid, Item, Image, Menu, Button, Tab } from 'semantic-ui-react';
 import { AnswerForm } from '../molecules/answerForm';
-// import { CorrespondingPages } from "../organisms/correspondingPages";
+import { CorrespondingPages } from './correspondingPages';
 
 export const DetailQuestion: React.FC<any> = (): JSX.Element => {
   const [visible, setVisible] = useState(false);
@@ -47,10 +35,6 @@ export const DetailQuestion: React.FC<any> = (): JSX.Element => {
       render: () => (
         <Tab.Pane>
           {(() => {
-            if (true) {
-              return <p>回答なし</p>;
-            }
-
             return (
               <Item.Group>
                 <Item>
@@ -101,7 +85,7 @@ export const DetailQuestion: React.FC<any> = (): JSX.Element => {
               </Item.Content>
             </Item>
             <Item>
-              {/* <CorrespondingPages /> */}
+              <CorrespondingPages contents={['fjas', 'fjio']} />
               <AnswerForm />
             </Item>
           </Item.Group>
