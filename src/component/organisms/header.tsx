@@ -4,6 +4,7 @@ import { Menu, Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
 
 const ViewerHeader: React.FC<any> = ({ setVisible }): JSX.Element => {
   const [open, setOpen] = React.useState(false);
+  console.log(setVisible);
 
   return (
     <div>

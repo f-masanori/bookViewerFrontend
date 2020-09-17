@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { BookForViewer } from './models';
+import { BookForViewer, BookQuestionList } from './models';
 
 interface ApiConfig {
   baseURL: string;
@@ -12,11 +12,10 @@ const DEFAULT_API_CONFIG: ApiConfig = {
   timeout: 7000,
 };
 
-export const getBookDataForViewer = (optionConfig?: ApiConfig) => {
+export const getBookDataForViewer = () => {
   /* apiを叩く際の設定 */
   const config = {
     ...DEFAULT_API_CONFIG,
-    ...optionConfig,
   };
   const instance = axios.create(config);
 
@@ -70,4 +69,28 @@ export const getBookDataForViewer = (optionConfig?: ApiConfig) => {
   };
 
   return getBookData;
+};
+export const getBookQuestionList = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const getBookQuestionListData = async (chapterId: number) => {
+    const bookQuestionList: BookQuestionList = {
+      questions: [
+        {
+          qustionId: 2,
+          userName: 'satousan',
+          createdAt: '1777/12/11',
+          title: 'これは何？',
+        },
+      ],
+    };
+
+    return bookQuestionList;
+  };
+
+  return getBookQuestionListData;
 };

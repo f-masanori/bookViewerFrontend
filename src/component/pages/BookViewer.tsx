@@ -1,17 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { withRouter } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  Checkbox,
-  Grid,
-  Header,
-  Icon,
-  Image,
-  Menu,
-  Segment,
-  Sidebar,
-  Button,
-} from 'semantic-ui-react';
+import { Grid, Menu, Segment, Sidebar } from 'semantic-ui-react';
 import { BookForViewer } from '../../services/forViewer/models';
 import {
   bookForViewerReducer,
@@ -19,10 +9,12 @@ import {
 } from '../../reducer/bookForViewer';
 import { ConbineState } from '../../reducer/index';
 import { getBookForViewer } from '../../actions/bookForViewer';
-
+import { getBookQuestionList } from '../../actions/bookQuestion';
+import { Viewer } from '../organisms/viewer';
 import ViewerHeader from '../organisms/header';
-import Viewer from '../organisms/viewer';
+// import Viewer from '../organisms/viewer';
 import { QuestionList } from '../organisms/questionList';
+import { DetailQuestion } from '../organisms/detailQuestion';
 
 export interface BookViewerProps {
   bookForViewer: BookForViewer;
@@ -33,22 +25,22 @@ export interface BookViewerProps {
 他にいいやり方がありそう？ */
 
 const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
-  // console.log(bookForViewer);
   const dispatch = useDispatch();
   useEffect(() => {
     console.log('useEffect');
     dispatch(getBookForViewer.start({ bookID: 0 }));
+    dispatch(getBookQuestionList.start({ chapterId: 1 }));
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  const bookForViewerSelector = useSelector(
-    (state: ConbineState) => state.bookForViewer,
-  );
-  console.log(bookForViewerSelector);
+  /*                  ↑のコメントアウトは認識されてる         */
+  const reduxState = useSelector((state: ConbineState) => state);
+  const bookForViewerState = reduxState.bookForViewer;
+  const bookQuestionState = reduxState.bookQuestion;
+  console.log(bookQuestionState);
   const [visible, setVisible] = useState(false);
 
   return (
     <>
-      <ViewerHeader setVisible={(on: any) => setVisible(on)} />
+      <ViewerHeader setVisible={(on: boolean) => setVisible(on)} />
       <Grid columns={1}>
         <Grid.Column>
           <Sidebar.Pushable as={Segment}>
@@ -63,12 +55,16 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
               width="very wide"
               direction="right"
             >
-              <QuestionList />
+              {bookQuestionState.selectedQuestionId === 0 ? (
+                <QuestionList />
+              ) : (
+                <DetailQuestion />
+              )}
             </Sidebar>
 
             <Sidebar.Pusher>
               <Segment basic>
-                <Viewer book={bookForViewerSelector.bookForViewer} />
+                <Viewer book={bookForViewerState.bookForViewer} />
               </Segment>
             </Sidebar.Pusher>
           </Sidebar.Pushable>

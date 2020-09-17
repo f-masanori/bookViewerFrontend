@@ -26,8 +26,6 @@ export const bookForViewerReducer: Reducer<
   state: BookForViewerState = initialState,
   action: BookForViewerAction,
 ): BookForViewerState => {
-  console.log('reducer');
-
   switch (action.type) {
     case ActionType.GET_BOOKFORVIEWER_START:
       return {
@@ -36,8 +34,6 @@ export const bookForViewerReducer: Reducer<
         isLoading: true,
       };
     case ActionType.GET_BOOKFORVIEWER_SUCCEED:
-      console.log('reducGET_BOOKFORVIEWER_SUCCEEDer');
-
       return {
         ...state,
         bookForViewer: action.payload.result.bookForViewer,
@@ -50,6 +46,7 @@ export const bookForViewerReducer: Reducer<
         error: action.payload.error,
       };
     default: {
+      console.log(action);
       console.error('miss match');
 
       return state;
