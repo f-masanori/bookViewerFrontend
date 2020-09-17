@@ -42,7 +42,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
     <>
       <ViewerHeader setVisible={(on: boolean) => setVisible(on)} />
       <Grid columns={1}>
-        <Grid.Column>
+        <Grid.Column height="100vh">
           <Sidebar.Pushable as={Segment}>
             <Sidebar
               as={Menu}
@@ -65,7 +65,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
             </Sidebar>
 
             <Sidebar.Pusher>
-              <Segment basic style={{ height: 450 }}>
+              <Segment>
                 <Viewer book={bookForViewerState.bookForViewer} />
               </Segment>
             </Sidebar.Pusher>

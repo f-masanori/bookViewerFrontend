@@ -19,19 +19,19 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
         }
 
         return (
-          <Grid columns={2} divided>
+          <Grid columns={2} padded>
             <Grid.Row>
               <Grid.Column>
                 {book.pageForViewer[0].pages[0].sentences.map(
                   (sentence: any) => (
-                    <span>{sentence.content}</span>
+                    <p style={{ fontSize: '15pt' }}>{sentence.content}</p>
                   ),
                 )}
               </Grid.Column>
               <Grid.Column>
                 {book.pageForViewer[0].pages[1].sentences.map(
                   (sentence: any) => (
-                    <span>{sentence.content}</span>
+                    <p style={{ fontSize: '15pt' }}>{sentence.content}</p>
                   ),
                 )}
               </Grid.Column>
