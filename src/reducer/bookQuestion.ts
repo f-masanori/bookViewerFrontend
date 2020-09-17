@@ -5,6 +5,8 @@ import {
   BookQuestionAction,
   GetBookQuestionListParams,
   GetBookQuestionListResult,
+  GetBookDetailQuestionParams,
+  GetBookDetailQuestionResult,
 } from '../actions/bookQuestion';
 import * as ActionType from '../actions/bookQuestionConstants';
 import {
@@ -63,8 +65,13 @@ export const bookQuestionReducer: Reducer<
   state: BookQuestionState = initialState,
   action: BookQuestionAction,
 ): BookQuestionState => {
-  console.log(action.type);
   switch (action.type) {
+    case ActionType.POST_BOOK_QUESTION:
+      return {
+        ...state,
+        bookQuestionList: { questions: [] },
+        isLoading: false,
+      };
     case ActionType.GET_BOOK_QUESTION_LIST_START:
       return {
         ...state,
@@ -85,11 +92,16 @@ export const bookQuestionReducer: Reducer<
       };
     case ActionType.GET_BOOK_DETAIL_QUESTION_START:
       /* paramsを用いて selectedQuestionIdを変更する*/
-      console.log('gggg');
+
+      type bookDetailQuestionPayload = {
+        params: GetBookDetailQuestionParams;
+        result: GetBookDetailQuestionResult;
+      };
 
       return {
         ...state,
-        selectedQuestionId: 1,
+        selectedQuestionId: ((action.payload as unknown) as bookDetailQuestionPayload)
+          .params.questionId,
         isLoading: true,
       };
     // case ActionType.GET_BOOK_DETAIL_QUESTION_SUCCEED:

@@ -24,7 +24,7 @@ export interface PostQuestion {
   userId: number;
   pageNum: number;
   rowNum?: number;
-  sentenceID?: number;
+  sentenceId?: number;
   title: string;
   content: string;
 }
@@ -44,7 +44,7 @@ export interface BookQuestionList {
   questions: BookQuestionForList[];
 }
 export interface BookQuestionForList {
-  qustionId: number;
+  questionId: number;
   userName: string;
   title: string;
   createdAt: string;
