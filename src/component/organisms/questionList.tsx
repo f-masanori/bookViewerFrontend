@@ -2,7 +2,10 @@ import React from 'react';
 import { Header, Divider, Table, Button } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
-import { getAnswersFromAuthor, getAnswersFromReader } from '../../actions/getAnswers';
+import {
+  getAnswersFromAuthor,
+  getAnswersFromReader,
+} from '../../actions/getAnswers';
 import { getDetailQuestions } from '../../actions/getDetailQuestions';
 /* このquestionListを使って質問を表示 */
 export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
@@ -32,13 +35,13 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
                     dispatch(
                       getBookDetailQuestion.start({
                         questionId: question.questionId,
-                      })
+                      }),
                     );
-                     dispatch(
-                       getDetailQuestions.start({
-                         questionId: question.questionId,
-                       }),
-                     );
+                    dispatch(
+                      getDetailQuestions.start({
+                        questionId: question.questionId,
+                      }),
+                    );
                     dispatch(
                       getAnswersFromAuthor.start({
                         questionId: question.questionId,
@@ -49,8 +52,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
                         questionId: question.questionId,
                       }),
                     );
-                  }
-                  }
+                  }}
                 >
                   質問詳細へ
                 </Button>
