@@ -3,7 +3,7 @@ import * as ActionType from './bookQuestionConstants';
 import {
   BookQuestionList,
   PostQuestion,
-  QuestionDetail,
+  DetailQuestion,
 } from '../services/forViewer/models';
 
 /*
@@ -26,14 +26,11 @@ export interface PostBookQuestionParams {
 //   bookQuestionList: BookQuestionList;
 // }
 
-/* 同じくここも */
 export interface GetBookDetailQuestionParams {
   qustionId: number;
 }
-/* 同じくここも */
 export interface GetBookDetailQuestionResult {
-  // ここはmodelに定義した型を使いまわしていい
-  detailQuestion: QuestionDetail;
+  detailQuestion: DetailQuestion;
 }
 
 export const getBookQuestionList = {
@@ -79,20 +76,20 @@ export const postBookQuestion = {
 };
 
 export const getBookDetailQuestion = {
-  start: (params: GetBookQuestionListParams) => ({
+  start: (params: GetBookDetailQuestionParams) => ({
     type: ActionType.GET_BOOK_QUESTION_LIST_START,
     payload: params,
   }),
 
   succeed: (
-    params: GetBookQuestionListParams,
-    result: GetBookQuestionListResult,
+    params: GetBookDetailQuestionParams,
+    result: GetBookDetailQuestionResult,
   ) => ({
     type: ActionType.GET_BOOK_QUESTION_LIST_SUCCEED,
     payload: { params, result },
   }),
 
-  fail: (params: GetBookQuestionListParams, error: AxiosError) => ({
+  fail: (params: GetBookDetailQuestionParams, error: AxiosError) => ({
     type: ActionType.GET_BOOK_QUESTION_LIST_FAIL,
     payload: { params, error },
     error: true,
@@ -103,4 +100,5 @@ export type BookQuestionAction =
   | ReturnType<typeof getBookQuestionList.start>
   | ReturnType<typeof getBookQuestionList.succeed>
   | ReturnType<typeof getBookQuestionList.fail>
-  | ReturnType<typeof postBookQuestion.start>;
+  | ReturnType<typeof postBookQuestion.start>
+  | ReturnType<typeof getBookDetailQuestion.start>;

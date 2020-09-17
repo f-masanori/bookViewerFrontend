@@ -134,8 +134,18 @@ export const postBookQuestion = () => {
   const postBookQuestionData = async (params: PostBookQuestionParams) => {
     // ここで実際にAPIを叩く処理を実装
     // 返り値はなし
+    console.log('post処理未実装');
+    console.log(params);
+
     return null;
   };
 
   return postBookQuestionData;
+};
+
+export const getAnswersFromReader = () => {
+  console.log('読者からの質問を取得処理を実装する');
+};
+export const getAnswersFromAuthor = () => {
+  console.log('著者からの質問を取得処理を実装する');
 };

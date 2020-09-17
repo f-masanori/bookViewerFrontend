@@ -35,7 +35,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
   const reduxState = useSelector((state: ConbineState) => state);
   const bookForViewerState = reduxState.bookForViewer;
   const bookQuestionState = reduxState.bookQuestion;
-  console.log(bookQuestionState);
+  console.log(bookQuestionState.selectedQuestionId);
   const [visible, setVisible] = useState(false);
 
   return (
