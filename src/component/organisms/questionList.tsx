@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Header, Table, Button } from 'semantic-ui-react';
+import { Menu, Divider, Table, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
 /* このquestionListを使って質問を表示 */
@@ -9,49 +9,53 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
 
   return (
     <div style={{ backgroundColor: '#FFFFFF', padding: '20px' }}>
-      <Header as="h2">質問リスト</Header>
+      <Menu>
+        <Button icon="left arrow" />
+        <div>
+          <h2>質問リスト</h2>
+        </div>
+      </Menu>
       <Divider />
       <Table basic="very">
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>タイトル</Table.HeaderCell>
             <Table.HeaderCell>質問内容</Table.HeaderCell>
+            <Table.HeaderCell>詳細</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {questionList.map((question: any) => (
-            <Table.Row>
-              <Table.Cell>
-                <Button
-                  onClick={() =>
-                    dispatch(getBookDetailQuestion.start({ questionId: question.questionId }))
-                  }
-                >
-                  {question.title}
-                </Button>
-              </Table.Cell>
-            </Table.Row>
-          ))}
-          {/* <Table.Row>
+          <Table.Row>
+            <Table.Cell>Pythonについて</Table.Cell>
+            <Table.Cell>何ができるの？</Table.Cell>
             <Table.Cell>
               <Button
                 onClick={() =>
-                  dispatch(getBookDetailQuestion.start({ questionId: 1 }))
+                  dispatch(getBookDetailQuestion.start({ qustionId: 2 }))
                 }
               >
-                Pythonについて
+                質問詳細へ
               </Button>
             </Table.Cell>
-            <Table.Cell>具体的にできることを教えて</Table.Cell>
           </Table.Row>
           <Table.Row>
+            <Table.Cell>Pythonの特徴について</Table.Cell>
+            <Table.Cell>魅力を教えて</Table.Cell>
             <Table.Cell>
-              <Button onClick={() => console.log(2)}>
-                Pythonの特徴について
+              <Button
+                onClick={() =>
+                  dispatch(getBookDetailQuestion.start({ qustionId: 2 }))
+                }
+              >
+                質問詳細へ
               </Button>
             </Table.Cell>
+<<<<<<< HEAD
             <Table.Cell>魅力を教えて</Table.Cell>
           </Table.Row> */}
+=======
+          </Table.Row>
+>>>>>>> refs/remotes/origin/master
         </Table.Body>
       </Table>
     </div>

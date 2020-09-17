@@ -6,6 +6,7 @@ import {
   DetailQuestion,
   AnswersFromAuthor,
   AnswersFromReader,
+  PostReplyParams,
 } from './models';
 import { PostBookQuestionParams } from '../../actions/bookQuestion';
 
@@ -14,8 +15,9 @@ interface ApiConfig {
   timeout: number;
 }
 
+// envからの取得が出来ていない
 const DEFAULT_API_CONFIG: ApiConfig = {
-  baseURL: '',
+  baseURL: process.env?.REACT_APP_DEV_API_URL || 'http://localhost:8080/api',
   timeout: 7000,
 };
 
@@ -28,48 +30,9 @@ export const getBookDataForViewer = () => {
 
   const getBookData = async (bookID: number) => {
     // ここでapiを叩いてデータを取得する
+    const { data } = await instance.get(`/book/mine/${bookID}`);
     const bookForViewer: BookForViewer = {
-      pageForViewer: [
-        {
-          chapterId: 1,
-          pages: [
-            {
-              pageId: 1,
-              sentences: [
-                {
-                  sentenceId: 1,
-                  content:
-                    'React (リアクト) は、Facebookとコミュニティによって開発されているユーザインタフェース構築のためのJavaScriptライブラリである。',
-                  questions: false, // (あり:0, なし:1)
-                },
-                {
-                  sentenceId: 2,
-                  content: 'React.jsまたはReactJSの名称でも知られている。',
-                  questions: false, // (あり:0, なし:1)
-                },
-                {
-                  sentenceId: 3,
-                  content:
-                    'ですがサーバーサイドではセッションを使うことによって可能になります。',
-                  questions: false, // (あり:0, なし:1)
-                },
-                {
-                  sentenceId: 4,
-                  content:
-                    'クライアントのJavaScriptを使ってる場合、ページを超えての値の保持はできません。',
-                  questions: false, // (あり:0, なし:1)
-                },
-                {
-                  sentenceId: 5,
-                  content:
-                    'セッションはサーバーサイドで値を保持できる機能です。',
-                  questions: false, // (あり:0, なし:1)
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      pageForViewer: data.book,
     };
 
     return bookForViewer;
@@ -77,6 +40,7 @@ export const getBookDataForViewer = () => {
 
   return getBookData;
 };
+
 export const getBookQuestionList = () => {
   /* apiを叩く際の設定 */
   const config = {
@@ -84,17 +48,10 @@ export const getBookQuestionList = () => {
   };
   const instance = axios.create(config);
 
-  const getBookQuestionListData = async (chapterId: number) => {
-    const bookQuestionList: BookQuestionList = {
-      questions: [
-        {
-          questionId: 2,
-          userName: 'satousan',
-          createdAt: '1777/12/11',
-          title: 'これは何？',
-        },
-      ],
-    };
+  const getBookQuestionListData = async (chapterId: number) =>
+    const bookQuestionList: BookQuestionList = await instance.get(
+      `/chapter/${chapterId}`,
+    );
 
     return bookQuestionList;
   };
@@ -109,14 +66,10 @@ export const getBookDetailQuestion = () => {
   };
   const instance = axios.create(config);
 
-  const getBookDetailQuestionData = async () => {
-    const bookQuestionList: DetailQuestion = {
-      userName: 'hoge',
-      createdAt: '1888/11/11',
-      pageNum: 11,
-      title: 'string',
-      content: 'string',
-    };
+  const getBookDetailQuestionData = async (questionId: number) => {
+    const bookQuestionList: DetailQuestion = await instance.get(
+      `/question/${questionId}/content`,
+    );
 
     return bookQuestionList;
   };
@@ -133,19 +86,101 @@ export const postBookQuestion = () => {
 
   const postBookQuestionData = async (params: PostBookQuestionParams) => {
     // ここで実際にAPIを叩く処理を実装
-    // 返り値はなし
-    console.log('post処理未実装');
-    console.log(params);
+    // TODO 要確認
+    // 1 returnはnullでいいのか
+    // 2 実際に成功しているかの確認も必要
+    const { data } = await instance.post('/question/create', params);
 
-    return null;
+    return data.hasSuccess;
   };
 
   return postBookQuestionData;
 };
 
 export const getAnswersFromReader = () => {
-  console.log('読者からの質問を取得処理を実装する');
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const answerList = async (questionId: number) => {
+    const answersFromReader: AnswersFromReader = await instance.get(
+      `/question/${questionId}/author/answer`,
+    );
+
+    return answersFromReader;
+  };
+
+  return answerList;
 };
+
 export const getAnswersFromAuthor = () => {
-  console.log('著者からの質問を取得処理を実装する');
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const answerList = async (questionId: number) => {
+    const answersFromAuthor: AnswersFromAuthor = await instance.get(
+      `/question/${questionId}/reader/answer`,
+    );
+
+    return answersFromAuthor;
+  };
+
+  return answerList;
+};
+
+export const PostReply = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const postBookQuestionData = async (params: PostReplyParams) => {
+    const { data } = await instance.post('/question/reply', params);
+
+    return data.hasSuccess;
+  };
+
+  return postBookQuestionData;
+};
+
+export const getBookQuestionListFromTitle = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const getBookQuestionListData = async (title: string) => {
+    const bookQuestionList: BookQuestionList = await instance.get(
+      `/question/search/${title}`,
+    );
+
+    return bookQuestionList;
+  };
+
+  return getBookQuestionListData;
+};
+
+export const getBookQuestionListFromSentence = () => {
+  /* apiを叩く際の設定 */
+  const config = {
+    ...DEFAULT_API_CONFIG,
+  };
+  const instance = axios.create(config);
+
+  const getBookQuestionListData = async (sentenceId: number) => {
+    const bookQuestionList: BookQuestionList = await instance.get(
+      `/question/search/sentence${sentenceId}`,
+    );
+
+    return bookQuestionList;
+  };
+
+  return getBookQuestionListData;
 };

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+
+
 import { Grid, Item, Image, Menu, Button, Tab } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { AnswerForm } from '../molecules/answerForm';
 import { CorrespondingPages } from './correspondingPages';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
@@ -8,9 +11,8 @@ import { getBookDetailQuestion } from '../../actions/bookQuestion';
 export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element => {
   const [visible, setVisible] = useState(false);
   console.log(bookQuestionState);
-  // const detailQustion = bookQuestionState.bookDetailQuestion.detailQuestion;
-  // const answerFromAuthor = bookQuestionState.bookDetailQuestion.answersFromAuthor;
-  // const answerFromReader = bookQuestionState.bookDetailQuestion.answersFromReader;
+
+  const dispatch = useDispatch();
 
   const panes = [
     {
@@ -22,7 +24,7 @@ export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element =>
               return (
                 <Item.Group>
                   <Item>
-                    {/* <Item.Image
+                    <Item.Image
                 size="tiny"
                 src="https://react.semantic-ui.com/images/wireframe/image.png"
                 onClick={() =>
