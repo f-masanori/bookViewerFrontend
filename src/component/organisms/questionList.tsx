@@ -29,7 +29,11 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
               <Table.Cell>
                 <Button
                   onClick={() =>
-                    dispatch(getBookDetailQuestion.start({ questionId: question.questionId }))
+                    dispatch(
+                      getBookDetailQuestion.start({
+                        questionId: question.questionId,
+                      }),
+                    )
                   }
                 >
                   質問詳細へ

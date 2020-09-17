@@ -4,6 +4,7 @@ import {
   BookQuestionList,
   PostQuestion,
   DetailQuestion,
+  AnswersFromAuthor,
 } from '../services/forViewer/models';
 
 /*
@@ -29,10 +30,19 @@ export interface PostBookQuestionParams {
 export interface GetBookDetailQuestionParams {
   questionId: number;
 }
+
 export interface GetBookDetailQuestionResult {
   detailQuestion: DetailQuestion;
 }
-
+export interface GetAnswersFromAuthorParams {
+  questionId: number;
+}
+export interface GetAnswersFromParams {
+  questionId: number;
+}
+export interface GetAnswersFromAuthorResult {
+  answers: number;
+}
 export const getBookQuestionList = {
   start: (params: GetBookQuestionListParams) => ({
     type: ActionType.GET_BOOK_QUESTION_LIST_START,
