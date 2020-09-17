@@ -7,16 +7,15 @@ import {
   Button,
   Tab,
 } from 'semantic-ui-react';
-import { ConbineState } from '../../reducer/index';
 import { AnswerForm } from '../molecules/answerForm';
 import { CorrespondingPages } from './correspondingPages';
 
 export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element => {
   const [visible, setVisible] = useState(false);
-
-  const detailQustion = bookQuestionState.bookDetailQuestion.detailQuestion;
-  const answerFromAuthor = bookQuestionState.bookDetailQuestion.answersFromAuthor;
-  const answerFromReader = bookQuestionState.bookDetailQuestion.answersFromReader;
+  console.log(bookQuestionState);
+  // const detailQustion = bookQuestionState.bookDetailQuestion.detailQuestion;
+  // const answerFromAuthor = bookQuestionState.bookDetailQuestion.answersFromAuthor;
+  // const answerFromReader = bookQuestionState.bookDetailQuestion.answersFromReader;
 
   const panes = [
     {
@@ -24,7 +23,7 @@ export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element =>
       render: () => (
         <Tab.Pane>
           {(() => {
-            if (answerFromAuthor) {
+            if (0) {
               return (
                 <Item.Group>
                   <Item>
@@ -56,7 +55,7 @@ export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element =>
       render: () => (
         <Tab.Pane>
           {(() => {
-            if (answerFromReader) {
+            if (0) {
               return <p>回答なし</p>;
             } else {
               return (
