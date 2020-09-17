@@ -56,7 +56,9 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
               direction="right"
             >
               {bookQuestionState.selectedQuestionId === 0 ? (
-                <QuestionList />
+                <QuestionList
+                  questionList={bookQuestionState.bookQuestionList.questions}
+                />
               ) : (
                 <DetailQuestion />
               )}
