@@ -1,8 +1,11 @@
 import React from 'react';
 
-export const QuestionList: React.FC<any> = (): JSX.Element => {
+/* このquestionListを使って質問を表示 */
+export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
+  console.log(questionList);
+
   return (
-    <div>
+    <div style={{ backgroundColor: '#FF8A80', padding: '20px' }}>
       itemList
       <div>hoge</div>
     </div>

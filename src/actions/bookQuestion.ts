@@ -1,6 +1,10 @@
 import { AxiosError } from 'axios';
 import * as ActionType from './bookQuestionConstants';
-import { BookQuestionList } from '../services/forViewer/models';
+import {
+  BookQuestionList,
+  PostQuestion,
+  QuestionDetail,
+} from '../services/forViewer/models';
 
 /*
 GetBookQuestionList...質問リストの取得時に使用
@@ -16,7 +20,7 @@ export interface GetBookQuestionListResult {
 
 /* ここのinterfaceの定義をして欲しい(質問投稿に必要な値) */
 export interface PostBookQuestionParams {
-  chapterId: number;
+  postQustion: PostQuestion;
 }
 // export interface PostBookQuestionResult {
 //   bookQuestionList: BookQuestionList;
@@ -24,12 +28,12 @@ export interface PostBookQuestionParams {
 
 /* 同じくここも */
 export interface GetBookDetailQuestionParams {
-  chapterId: number;
+  qustionId: number;
 }
 /* 同じくここも */
 export interface GetBookDetailQuestionResult {
   // ここはmodelに定義した型を使いまわしていい
-  bookQuestionList: BookQuestionList;
+  detailQuestion: QuestionDetail;
 }
 
 export const getBookQuestionList = {
