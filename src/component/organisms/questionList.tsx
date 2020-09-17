@@ -19,7 +19,20 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          <Table.Row>
+          {questionList.map((question: any) => (
+            <Table.Row>
+              <Table.Cell>
+                <Button
+                  onClick={() =>
+                    dispatch(getBookDetailQuestion.start({ questionId: question.questionId }))
+                  }
+                >
+                  {question.title}
+                </Button>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+          {/* <Table.Row>
             <Table.Cell>
               <Button
                 onClick={() =>
@@ -38,7 +51,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
               </Button>
             </Table.Cell>
             <Table.Cell>魅力を教えて</Table.Cell>
-          </Table.Row>
+          </Table.Row> */}
         </Table.Body>
       </Table>
     </div>
