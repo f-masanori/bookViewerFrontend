@@ -20,14 +20,14 @@ export interface GetBookQuestionListResult {
 
 /* ここのinterfaceの定義をして欲しい(質問投稿に必要な値) */
 export interface PostBookQuestionParams {
-  postQustion: PostQuestion;
+  postQuestion: PostQuestion;
 }
 // export interface PostBookQuestionResult {
 //   bookQuestionList: BookQuestionList;
 // }
 
 export interface GetBookDetailQuestionParams {
-  qustionId: number;
+  questionId: number;
 }
 export interface GetBookDetailQuestionResult {
   detailQuestion: DetailQuestion;
@@ -56,8 +56,8 @@ export const getBookQuestionList = {
 
 export const postBookQuestion = {
   start: (params: PostBookQuestionParams) => ({
-    type: ActionType.POST_BOOK_QUESTION_START,
-    payload: params,
+    type: ActionType.POST_BOOK_QUESTION,
+    payload: { params },
   }),
   /* 今回は時間ないからpostの際の成功and失敗エラー処理をかかない */
   // succeed: (
@@ -78,7 +78,7 @@ export const postBookQuestion = {
 export const getBookDetailQuestion = {
   start: (params: GetBookDetailQuestionParams) => ({
     type: ActionType.GET_BOOK_DETAIL_QUESTION_START,
-    payload: params,
+    payload: { params },
   }),
 
   succeed: (

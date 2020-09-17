@@ -1,10 +1,9 @@
 import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
-import { Menu, Button} from 'semantic-ui-react';
+import { Menu, Button } from 'semantic-ui-react';
 import { QuestionForm } from '../molecules/questionForm';
 
 const ViewerHeader: React.FC<any> = ({ setVisible }): JSX.Element => {
-
   return (
     <div>
       <Menu>

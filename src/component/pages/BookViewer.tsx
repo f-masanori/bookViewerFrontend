@@ -60,7 +60,7 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
                   questionList={bookQuestionState.bookQuestionList.questions}
                 />
               ) : (
-                <DetailQuestion bookQuestionState />
+                  <DetailQuestion bookuQuesitionState={bookQuestionState} />
               )}
             </Sidebar>
 

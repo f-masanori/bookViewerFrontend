@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  Item,
-  Image,
-  Menu,
-  Button,
-  Tab,
-} from 'semantic-ui-react';
+import { Grid, Item, Image, Menu, Button, Tab } from 'semantic-ui-react';
+import { useDispatch, useSelector } from 'react-redux';
 import { AnswerForm } from '../molecules/answerForm';
 import { CorrespondingPages } from './correspondingPages';
+import { getBookDetailQuestion } from '../../actions/bookQuestion';
 
 export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element => {
   const [visible, setVisible] = useState(false);
@@ -30,7 +25,10 @@ export const DetailQuestion: React.FC<any> = (bookQuestionState): JSX.Element =>
                     {/* <Item.Image
                 size="tiny"
                 src="https://react.semantic-ui.com/images/wireframe/image.png"
-              /> */}
+                onClick={() =>
+                  dispatch(getBookDetailQuestion.start({ questionId: 0 }))
+                }
+              />
 
                     <Item.Content>
                       <Item.Header>Header</Item.Header>
