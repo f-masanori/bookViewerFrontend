@@ -65,8 +65,13 @@ export const bookQuestionReducer: Reducer<
   state: BookQuestionState = initialState,
   action: BookQuestionAction,
 ): BookQuestionState => {
-  console.log(action.type);
   switch (action.type) {
+    case ActionType.POST_BOOK_QUESTION:
+      return {
+        ...state,
+        bookQuestionList: { questions: [] },
+        isLoading: false,
+      };
     case ActionType.GET_BOOK_QUESTION_LIST_START:
       return {
         ...state,
@@ -87,8 +92,6 @@ export const bookQuestionReducer: Reducer<
       };
     case ActionType.GET_BOOK_DETAIL_QUESTION_START:
       /* paramsを用いて selectedQuestionIdを変更する*/
-      console.log('gggg');
-      console.log(action.payload);
 
       type bookDetailQuestionPayload = {
         params: GetBookDetailQuestionParams;

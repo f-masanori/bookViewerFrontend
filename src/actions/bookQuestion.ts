@@ -20,7 +20,7 @@ export interface GetBookQuestionListResult {
 
 /* ここのinterfaceの定義をして欲しい(質問投稿に必要な値) */
 export interface PostBookQuestionParams {
-  postQustion: PostQuestion;
+  postQuestion: PostQuestion;
 }
 // export interface PostBookQuestionResult {
 //   bookQuestionList: BookQuestionList;
@@ -56,7 +56,7 @@ export const getBookQuestionList = {
 
 export const postBookQuestion = {
   start: (params: PostBookQuestionParams) => ({
-    type: ActionType.POST_BOOK_QUESTION_START,
+    type: ActionType.POST_BOOK_QUESTION,
     payload: { params },
   }),
   /* 今回は時間ないからpostの際の成功and失敗エラー処理をかかない */

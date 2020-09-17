@@ -2,11 +2,19 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
-import { postBookQuestion } from '../../actions/bookQuestion';
+import {
+  postBookQuestion,
+  PostBookQuestionParams,
+} from '../../actions/bookQuestion';
+import {
+  BookQuestionList,
+  PostQuestion,
+  DetailQuestion,
+} from '../../services/forViewer/models';
 
 export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
-  const [questionParams, setQuestionParams] = useState({
+  const [questionParams, setQuestionParams] = useState<PostQuestion>({
     userId: 0,
     pageNum: 0,
     sentenceId: 0,
@@ -23,7 +31,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
 
   const handleSubmit = () => {
     setOpen(false);
-    // dispatch(postBookQuestion.start(postQuestion: { questionParams }));
+    dispatch(postBookQuestion.start({ postQuestion: questionParams }));
   };
 
   return (
