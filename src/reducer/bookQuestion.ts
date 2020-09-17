@@ -7,11 +7,22 @@ import {
   GetBookQuestionListResult,
 } from '../actions/bookQuestion';
 import * as ActionType from '../actions/bookQuestionConstants';
-import { BookForViewer, BookQuestionList } from '../services/forViewer/models';
+import {
+  BookForViewer,
+  BookQuestionList,
+  DetailQuestion,
+  AnswersFromAuthor,
+  AnswersFromReader,
+} from '../services/forViewer/models';
 
 export interface BookQuestionState {
   bookQuestionList: BookQuestionList;
   isLoading: boolean;
+  bookDetailQuestion: {
+    detailQuestion: DetailQuestion;
+    answersFromAuthor: AnswersFromAuthor;
+    answersFromReader: AnswersFromReader;
+  };
   selectedQuestionId: number;
   error?: AxiosError | null;
 }
@@ -20,10 +31,31 @@ export const initialState: BookQuestionState = {
   bookQuestionList: {
     questions: [],
   },
+  bookDetailQuestion: {
+    detailQuestion: {
+      userName: '',
+      createdAt: '',
+      pageNum: 0,
+      title: '',
+      content: '',
+    },
+    answersFromAuthor: {
+      answers: [],
+    },
+    answersFromReader: {
+      answers: [],
+    },
+  },
   selectedQuestionId: 0,
   isLoading: false,
 };
-
+type payload = {
+  params: GetBookQuestionListParams;
+  result: GetBookQuestionListResult;
+};
+type error = {
+  error?: AxiosError | null;
+};
 export const bookQuestionReducer: Reducer<
   BookQuestionState,
   BookQuestionAction
@@ -39,30 +71,37 @@ export const bookQuestionReducer: Reducer<
         isLoading: true,
       };
     case ActionType.GET_BOOK_QUESTION_LIST_SUCCEED:
-      type payload = {
-        params: GetBookQuestionListParams;
-        result: GetBookQuestionListResult;
-      };
-
       return {
         ...state,
         bookQuestionList: (action.payload as payload).result.bookQuestionList,
         isLoading: false,
       };
     case ActionType.GET_BOOK_QUESTION_LIST_FAIL:
-      type error = {
-        error?: AxiosError | null;
-      };
-
       return {
         ...state,
         isLoading: false,
         error: (action as error).error,
       };
+    case ActionType.GET_BOOK_DETAIL_QUESTION_START:
+      /* paramsを用いて selectedQuestionIdを変更する*/
+      return {
+        ...state,
+        selectedQuestionId: 1,
+        isLoading: true,
+      };
+    // case ActionType.GET_BOOK_DETAIL_QUESTION_SUCCEED:
+    //   return {
+    //     ...state,
+    //     bookQuestionList: (action.payload as payload).result.bookQuestionList,
+    //     isLoading: false,
+    //   };
+    // case ActionType.GET_BOOK_DETAIL_QUESTION_FAIL:
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     error: (action as error).error,
+    //   };
     default: {
-      console.error('miss match');
-      console.log(action);
-
       return state;
     }
   }
