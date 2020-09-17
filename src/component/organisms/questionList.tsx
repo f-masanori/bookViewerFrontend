@@ -23,7 +23,7 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
             <Table.Cell>
               <Button
                 onClick={() =>
-                  dispatch(getBookDetailQuestion.start({ qustionId: 1 }))
+                  dispatch(getBookDetailQuestion.start({ questionId: 1 }))
                 }
               >
                 Pythonについて
