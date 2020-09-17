@@ -6,10 +6,8 @@ import {
   DetailQuestion,
   AnswersFromAuthor,
   AnswersFromReader,
-  PostReplyParams,
   BookPage,
 } from './models';
-import { PostBookQuestionParams } from '../../actions/bookQuestion';
 
 interface ApiConfig {
   baseURL: string;
@@ -18,9 +16,7 @@ interface ApiConfig {
 
 // envからの取得が出来ていない
 const DEFAULT_API_CONFIG: ApiConfig = {
-  baseURL:
-    process.env?.REACT_APP_DEV_API_URL ||
-    'https://book-viewer-backend.herokuapp.com/api/',
+  baseURL: 'https://book-viewer-backend.herokuapp.com/api/',
   timeout: 7000,
 };
 
@@ -80,26 +76,6 @@ export const getBookDetailQuestion = () => {
   return getBookDetailQuestionData;
 };
 
-export const postBookQuestion = () => {
-  /* apiを叩く際の設定 */
-  const config = {
-    ...DEFAULT_API_CONFIG,
-  };
-  const instance = axios.create(config);
-
-  const postBookQuestionData = async (params: PostBookQuestionParams) => {
-    // ここで実際にAPIを叩く処理を実装
-    // TODO 要確認
-    // 1 returnはnullでいいのか
-    // 2 実際に成功しているかの確認も必要
-    const { data } = await instance.post('/question/create', params);
-
-    return data.hasSuccess;
-  };
-
-  return postBookQuestionData;
-};
-
 export const getAnswersFromReader = () => {
   /* apiを叩く際の設定 */
   const config = {
@@ -153,22 +129,6 @@ export const getPageFromQuestion = () => {
   };
 
   return page;
-};
-
-export const PostReply = () => {
-  /* apiを叩く際の設定 */
-  const config = {
-    ...DEFAULT_API_CONFIG,
-  };
-  const instance = axios.create(config);
-
-  const postBookQuestionData = async (params: PostReplyParams) => {
-    const { data } = await instance.post('/question/reply', params);
-
-    return data.hasSuccess;
-  };
-
-  return postBookQuestionData;
 };
 
 export const getBookQuestionListFromTitle = () => {
