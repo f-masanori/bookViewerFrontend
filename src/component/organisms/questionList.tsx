@@ -1,5 +1,5 @@
 import React from 'react';
-import { Divider, Header, Table } from 'semantic-ui-react';
+import { Divider, Header, Table, Button } from 'semantic-ui-react';
 
 /* このquestionListを使って質問を表示 */
 export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
@@ -18,11 +18,17 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
         </Table.Header>
         <Table.Body>
           <Table.Row>
-            <Table.Cell>Pythonについて</Table.Cell>
+            <Table.Cell>
+              <Button onClick={() => console.log(1)}>Pythonについて</Button>
+            </Table.Cell>
             <Table.Cell>具体的にできることを教えて</Table.Cell>
           </Table.Row>
           <Table.Row>
-            <Table.Cell>Pythonの特徴について</Table.Cell>
+            <Table.Cell>
+              <Button onClick={() => console.log(2)}>
+                Pythonの特徴について
+              </Button>
+            </Table.Cell>
             <Table.Cell>魅力を教えて</Table.Cell>
           </Table.Row>
         </Table.Body>
