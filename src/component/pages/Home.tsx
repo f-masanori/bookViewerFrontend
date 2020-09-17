@@ -7,7 +7,7 @@ const Home = (): JSX.Element => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div>
+    <div style={{ height: '100%' }}>
       <ViewerHeader setVisible={(on: any) => setVisible(on)} />
       <DetailQuestion />
     </div>

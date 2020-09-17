@@ -8,7 +8,9 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
   const dispatch = useDispatch();
 
   return (
-    <div style={{ backgroundColor: '#FFFFFF', padding: '20px' }}>
+    <div
+      style={{ backgroundColor: '#FFFFFF', padding: '20px', height: '100%' }}
+    >
       <Header as="h2">質問リスト</Header>
       <Divider />
       <Table basic="very">
