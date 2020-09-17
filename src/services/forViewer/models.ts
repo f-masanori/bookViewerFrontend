@@ -74,3 +74,9 @@ export interface PostReplyParams {
   questionId: number;
   content: string;
 }
+
+export interface BookPage {
+  contents: {
+    content: string;
+  }[];
+}
