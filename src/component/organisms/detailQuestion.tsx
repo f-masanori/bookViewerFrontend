@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+  Icon,
   Label,
   Feed,
   Card,
@@ -64,21 +65,27 @@ export const DetailQuestion: React.FC<any> = (
             }
 
             return (
-              <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <Card.Content>
-                  <Feed>
-                    {answers.answersFromAuthor.answers.map(answer => (
-                      <Feed.Event>
-                        <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
-                        <Feed.Content>
-                          <Feed.Date content={answer.createdAt} />
-                          <Feed.Summary>{answer.content}</Feed.Summary>
-                        </Feed.Content>
-                      </Feed.Event>
-                    ))}
-                  </Feed>
-                </Card.Content>
-              </Card>
+              <div>
+                {answers.answersFromAuthor.answers.map(answer => (
+                  <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                    <Card.Content description>
+                      <Feed>
+                        <Feed.Event>
+                          <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                          <Feed.Content>
+                            <Feed.Date content={answer.createdAt} />
+                            <Feed.Summary>{answer.content}</Feed.Summary>
+                          </Feed.Content>
+                        </Feed.Event>
+                      </Feed>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <Icon name="heart outline" />
+                      {answer.likeNum} hearts
+                    </Card.Content>
+                  </Card>
+                ))}
+              </div>
             );
           })()}
         </Tab.Pane>
@@ -106,21 +113,27 @@ export const DetailQuestion: React.FC<any> = (
             }
 
             return (
-              <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <Card.Content>
-                  <Feed>
-                    {answers.answersFromReader.answers.map(answer => (
-                      <Feed.Event>
-                        <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
-                        <Feed.Content>
-                          <Feed.Date content={answer.createdAt} />
-                          <Feed.Summary>{answer.content}</Feed.Summary>
-                        </Feed.Content>
-                      </Feed.Event>
-                    ))}
-                  </Feed>
-                </Card.Content>
-              </Card>
+              <div>
+                {answers.answersFromReader.answers.map(answer => (
+                  <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                    <Card.Content description>
+                      <Feed>
+                        <Feed.Event>
+                          <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                          <Feed.Content>
+                            <Feed.Date content={answer.createdAt} />
+                            <Feed.Summary>{answer.content}</Feed.Summary>
+                          </Feed.Content>
+                        </Feed.Event>
+                      </Feed>
+                    </Card.Content>
+                    <Card.Content extra>
+                      <Icon name="heart outline" />
+                      {answer.likeNum} hearts
+                    </Card.Content>
+                  </Card>
+                ))}
+              </div>
             );
           })()}
         </Tab.Pane>
