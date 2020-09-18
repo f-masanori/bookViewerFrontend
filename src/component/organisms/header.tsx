@@ -2,6 +2,7 @@ import React from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Input, Icon, Menu, Button } from 'semantic-ui-react';
 import { QuestionForm } from '../molecules/questionForm';
+import { SearchResult } from './searchResult';
 
 const ViewerHeader: React.FC<any> = ({ setVisible }): JSX.Element => {
   return (
@@ -25,13 +26,16 @@ const ViewerHeader: React.FC<any> = ({ setVisible }): JSX.Element => {
           <Menu.Item>
             <Input icon placeholder="Search...">
               <input />
-              <Button
-                onClick={() => {
-                  console.log('button押したぞ');
-                }}
-              >
-                検索
-              </Button>
+              <SearchResult
+                searchResultList={[
+                  {
+                    questionId: 1,
+                    title: 'Pythonについて',
+                    userName: 'Author',
+                    createdAt: '2020-09-16 04:24:14',
+                  },
+                ]}
+              />
             </Input>
           </Menu.Item>
         </Menu.Menu>
