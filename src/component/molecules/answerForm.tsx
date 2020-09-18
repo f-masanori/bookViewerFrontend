@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBookQuestionList } from '../../actions/bookQuestion';
 import { PostReplyParams } from '../../services/forViewer/models';
 import { PostReply } from '../../services/forViewer/postAPI';
 import { ConbineState } from '../../reducer/index';
@@ -11,7 +12,7 @@ export const AnswerForm: React.FC<any> = (): JSX.Element => {
 
   const reduxState = useSelector((state: ConbineState) => state);
   const bookQuestionState = reduxState.bookQuestion;
-
+  const dispatch = useDispatch();
   const [answerParams, setAnswerParams] = useState<PostReplyParams>({
     userId: 1,
     questionId: bookQuestionState.selectedQuestionId,
@@ -25,6 +26,7 @@ export const AnswerForm: React.FC<any> = (): JSX.Element => {
   const handleSubmit = async () => {
     setOpen(false);
     await PostReply(answerParams);
+    dispatch(getBookQuestionList.start({ chapterId: 1 }));
   };
 
   return (
