@@ -24,7 +24,6 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
     let val: string | number = e.target.value;
     if (input === 'pageNum' || input === 'sentenceId') {
       val = Number(e.target.value);
-      console.log(val);
       if (Number.isNaN(val)) {
         alert('数値のみを入力してください');
         val = 0;
