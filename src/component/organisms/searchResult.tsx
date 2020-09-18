@@ -25,49 +25,57 @@ export const SearchResult: React.FC<any> = ({
     >
       <Modal.Header>検索結果</Modal.Header>
       <Modal.Content>
-        <Table basic="very">
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>タイトル</Table.HeaderCell>
-              <Table.HeaderCell>詳細</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-          <Table.Body>
-            {searchResultList.map((question: any) => (
-              <Table.Row>
-                <Table.Cell>{question.title}</Table.Cell>
-                <Table.Cell>
-                  <Button
-                    onClick={() => {
-                      dispatch(
-                        getBookDetailQuestion.start({
-                          questionId: question.questionId,
-                        }),
-                      );
-                      dispatch(
-                        getDetailQuestions.start({
-                          questionId: question.questionId,
-                        }),
-                      );
-                      dispatch(
-                        getAnswersFromAuthor.start({
-                          questionId: question.questionId,
-                        }),
-                      );
-                      dispatch(
-                        getAnswersFromReader.start({
-                          questionId: question.questionId,
-                        }),
-                      );
-                    }}
-                  >
-                    質問詳細へ
-                  </Button>
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
+        {(() => {
+          if (searchResultList.length === 0) {
+            return <h3>該当する質問はありません</h3>;
+          }
+
+          return (
+            <Table basic="very">
+              <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell>タイトル</Table.HeaderCell>
+                  <Table.HeaderCell>詳細</Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {searchResultList.map((question: any) => (
+                  <Table.Row>
+                    <Table.Cell>{question.title}</Table.Cell>
+                    <Table.Cell>
+                      <Button
+                        onClick={() => {
+                          dispatch(
+                            getBookDetailQuestion.start({
+                              questionId: question.questionId,
+                            }),
+                          );
+                          dispatch(
+                            getDetailQuestions.start({
+                              questionId: question.questionId,
+                            }),
+                          );
+                          dispatch(
+                            getAnswersFromAuthor.start({
+                              questionId: question.questionId,
+                            }),
+                          );
+                          dispatch(
+                            getAnswersFromReader.start({
+                              questionId: question.questionId,
+                            }),
+                          );
+                        }}
+                      >
+                        質問詳細へ
+                      </Button>
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
+          );
+        })()}
       </Modal.Content>
       <Modal.Actions>
         <Button color="black" onClick={() => setOpen(false)}>
