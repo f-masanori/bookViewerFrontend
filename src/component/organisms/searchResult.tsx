@@ -11,7 +11,9 @@ import {
 import { getBookQuestionListFromTitle } from '../../services/forViewer/api';
 
 export const SearchResult: React.FC<any> = ({
+
   title,questionList,setVisible
+
 }): JSX.Element => {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -60,7 +62,9 @@ export const SearchResult: React.FC<any> = ({
                     <Table.Cell>
                       <Button
                         onClick={() => {
+
                           setOpen(false);
+
                           dispatch(
                             getBookDetailQuestion.start({
                               questionId: question.questionId,
@@ -81,7 +85,9 @@ export const SearchResult: React.FC<any> = ({
                               questionId: question.questionId,
                             }),
                           );
+
                           setVisible(true);
+
                         }}
                       >
                         質問詳細へ
