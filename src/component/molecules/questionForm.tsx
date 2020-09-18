@@ -22,6 +22,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
 
+
     let val: string | number = e.target.value;
     if (input === 'pageNum' || input === 'sentenceId') {
       val = Number(e.target.value);

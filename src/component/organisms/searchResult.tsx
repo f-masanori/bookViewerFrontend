@@ -1,4 +1,4 @@
-import React, { ReactHTML } from 'react';
+import React, { ReactHTML, useEffect, useState } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Table, Modal, Button } from 'semantic-ui-react';
 import { useDispatch } from 'react-redux';
@@ -8,15 +8,30 @@ import {
   getAnswersFromAuthor,
   getAnswersFromReader,
 } from '../../actions/getAnswers';
+import { getBookQuestionListFromTitle } from '../../services/forViewer/api';
 
 export const SearchResult: React.FC<any> = ({
 
-  searchResultList,setVisible
+  title,questionList,setVisible
 
 }): JSX.Element => {
-  console.log(searchResultList);
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
+  // const [questionList, setQuestionList] = useState<any>([]);
+  // useEffect(() => {
+  //   const getQuestionList = async (input: string) => {
+  //     const { questions } = await getBookQuestionListFromTitle(
+  //       input
+  //     );
+  //     console.log("questions: ")
+  //     console.log(questions)
+  //     console.log("input: ")
+  //     console.log(input)
+  //     setQuestionList(questions);
+  //   };
+  //   getQuestionList(title);
+  // }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // /*                  ↑のコメントアウトは認識されてる         */
 
   return (
     <Modal
@@ -28,7 +43,7 @@ export const SearchResult: React.FC<any> = ({
       <Modal.Header>検索結果</Modal.Header>
       <Modal.Content>
         {(() => {
-          if (searchResultList.length === 0) {
+          if (questionList.length === 0) {
             return <h3>該当する質問はありません</h3>;
           }
 
@@ -41,7 +56,7 @@ export const SearchResult: React.FC<any> = ({
                 </Table.Row>
               </Table.Header>
               <Table.Body>
-                {searchResultList.map((question: any) => (
+                {questionList.map((question: any) => (
                   <Table.Row>
                     <Table.Cell>{question.title}</Table.Cell>
                     <Table.Cell>

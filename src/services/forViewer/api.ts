@@ -126,21 +126,16 @@ export const getPageFromQuestion = async (questionId: number) => {
   return bookPage;
 };
 
-export const getBookQuestionListFromTitle = () => {
+export const getBookQuestionListFromTitle = async (title: string) => {
   /* apiを叩く際の設定 */
   const config = {
     ...DEFAULT_API_CONFIG,
   };
   const instance = axios.create(config);
+  const { data } = await instance.get(`/question/search/${title}`);
+  const bookQuestionList: BookQuestionList = data;
 
-  const getBookQuestionListData = async (title: string) => {
-    const { data } = await instance.get(`/question/search/${title}`);
-    const bookQuestionList: BookQuestionList = data;
-
-    return bookQuestionList;
-  };
-
-  return getBookQuestionListData;
+  return bookQuestionList;
 };
 
 export const getBookQuestionListFromSentence = async (sentenceId: number) => {

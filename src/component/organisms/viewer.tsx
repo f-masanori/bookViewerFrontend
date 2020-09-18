@@ -158,6 +158,8 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
                       <p style={{ fontSize: '5pt' }}>{sentence.sentenceId}</p>
                       <p style={{ fontSize: '15pt' }}>{sentence.content}</p>
                     </p>
+
+
                   ),
                 )}
               </Grid.Column>
