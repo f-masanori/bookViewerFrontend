@@ -35,6 +35,7 @@ const ViewerHeader: React.FC<any> = ({ setVisible }): JSX.Element => {
                     createdAt: '2020-09-16 04:24:14',
                   },
                 ]}
+                setVisible={(on: boolean) => setVisible(on)}
               />
             </Input>
           </Menu.Item>
