@@ -114,21 +114,16 @@ export const getAnswersFromAuthor = () => {
   return answerList;
 };
 
-export const getPageFromQuestion = () => {
+export const getPageFromQuestion = async (questionId: number) => {
   /* apiを叩く際の設定 */
   const config = {
     ...DEFAULT_API_CONFIG,
   };
   const instance = axios.create(config);
+  const { data } = await instance.get(`/question/${questionId}/page`);
+  const bookPage: BookPage = data;
 
-  const page = async (questionId: number) => {
-    const { data } = await instance.get(`/question/${questionId}/page`);
-    const bookPage: BookPage = data;
-
-    return bookPage;
-  };
-
-  return page;
+  return bookPage;
 };
 
 export const getBookQuestionListFromTitle = () => {
