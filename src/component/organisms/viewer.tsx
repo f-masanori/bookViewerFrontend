@@ -17,9 +17,10 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
         }
 
         return (
-          <Grid columns={2} padded style={{ height: '100%' }}>
+          <Grid columns={2} divided>
             <Grid.Row>
               <Grid.Column>
+
                 {book.pageForViewer[0].pages[0].sentences.map((sentence: any) =>
                   sentence.hasQuestion ? (
                     <p>
@@ -39,6 +40,7 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
                       <p style={{ fontSize: '5pt' }}>{sentence.sentenceId}</p>
                       <p style={{ fontSize: '15pt' }}>{sentence.content}</p>
                     </p>
+
                   ),
                 )}
               </Grid.Column>
@@ -63,6 +65,8 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
                       <p style={{ fontSize: '5pt' }}>{sentence.sentenceId}</p>
                       <p style={{ fontSize: '15pt' }}>{sentence.content}</p>
                     </p>
+
+
                   ),
                 )}
               </Grid.Column>

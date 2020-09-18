@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   Label,
@@ -17,15 +17,29 @@ import { ConbineState } from '../../reducer/index';
 import { AnswerForm } from '../molecules/answerForm';
 import { CorrespondingPages } from './correspondingPages';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
+import { getPageFromQuestion } from '../../services/forViewer/api';
 
 export const DetailQuestion: React.FC<any> = (
   bookQuestionState,
 ): JSX.Element => {
   const [visible, setVisible] = useState(false);
-  const reduxState = useSelector((state: ConbineState) => state);
-  const answers = reduxState.answers;
-  const detailQuestions = reduxState.detailQuestions.detailQuestions;
+
+  const [pageContents, setContents] = useState<any>([]);
+
   const dispatch = useDispatch();
+
+  const reduxState = useSelector((state: ConbineState) => state);
+  const { answers } = reduxState;
+  const questionId = reduxState.bookQuestion.selectedQuestionId;
+  const { detailQuestions } = reduxState.detailQuestions;
+  useEffect(() => {
+    const getContents = async (questionIdForPage: any) => {
+      const { contents } = await getPageFromQuestion(questionIdForPage);
+      setContents(contents);
+    };
+    getContents(questionId);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  /*                  ↑のコメントアウトは認識されてる         */
 
   const panes = [
     {
@@ -151,7 +165,7 @@ export const DetailQuestion: React.FC<any> = (
         </Card>
       </div>
       <div style={{ margin: '20px' }}>
-        <CorrespondingPages contents={['fjas', 'fjio']} />
+        <CorrespondingPages contents={pageContents} />
         <AnswerForm />
       </div>
 

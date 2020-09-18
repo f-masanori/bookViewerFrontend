@@ -21,7 +21,17 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const handleChange = (input: any) => (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setQuestionParams({ ...questionParams, [input]: e.target.value });
+    let val: string | number = e.target.value;
+    if (input === 'pageNum' || input === 'sentenceId') {
+      val = Number(e.target.value);
+      console.log(val);
+      if (Number.isNaN(val)) {
+        alert('数値のみを入力してください');
+        val = 0;
+      }
+    }
+
+    setQuestionParams({ ...questionParams, [input]: val });
   };
 
   const handleSubmit = async () => {
@@ -29,6 +39,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
     await PostQuestionData(questionParams);
     dispatch(getBookQuestionList.start({ chapterId: 1 }));
   };
+  console.log(questionParams);
 
   return (
     <Modal
