@@ -18,7 +18,6 @@ import { AnswerForm } from '../molecules/answerForm';
 import { CorrespondingPages } from './correspondingPages';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
 import { getPageFromQuestion } from '../../services/forViewer/api';
-import { ConbineState } from '../../reducer/index';
 
 export const DetailQuestion: React.FC<any> = (
   bookQuestionState,
@@ -27,11 +26,12 @@ export const DetailQuestion: React.FC<any> = (
 
   const [pageContents, setContents] = useState<any>([]);
 
-
   const dispatch = useDispatch();
 
   const reduxState = useSelector((state: ConbineState) => state);
+  const { answers } = reduxState;
   const questionId = reduxState.bookQuestion.selectedQuestionId;
+  const { detailQuestions } = reduxState.detailQuestions;
   useEffect(() => {
     const getContents = async (questionIdForPage: any) => {
       const { contents } = await getPageFromQuestion(questionIdForPage);
