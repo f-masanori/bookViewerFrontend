@@ -19,7 +19,7 @@ import {
   getAnswersFromReader,
 } from '../../actions/getAnswers';
 
-export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
+export const Viewer: React.FC<any> = ({ book, setVisible }): JSX.Element => {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [content, setContent] = React.useState(<div>jjj</div>);
   const modalContent = (temp: any) => temp;
@@ -71,6 +71,8 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
                           questionId: question.questionId,
                         }),
                       );
+                      setModalOpen(false);
+                      setVisible(true);
                     }}
                   >
                     質問詳細へ
