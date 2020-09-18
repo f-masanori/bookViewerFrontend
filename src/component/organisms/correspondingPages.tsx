@@ -22,7 +22,7 @@ export const CorrespondingPages: React.FC<any> = ({
               <Grid.Row>
                 <Grid.Column>
                   {contents.map((content: any) => (
-                    <span>{content}</span>
+                    <span>{content.content}</span>
                   ))}
                 </Grid.Column>
               </Grid.Row>
@@ -32,10 +32,7 @@ export const CorrespondingPages: React.FC<any> = ({
       </Modal.Content>
       <Modal.Actions>
         <Button color="black" onClick={() => setOpen(false)}>
-          破棄
-        </Button>
-        <Button color="green" onClick={() => setOpen(false)}>
-          回答
+          戻る
         </Button>
       </Modal.Actions>
     </Modal>
