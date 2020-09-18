@@ -13,7 +13,7 @@ import {
   Tab,
 } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
-
+import { ConbineState } from '../../reducer/index';
 import { AnswerForm } from '../molecules/answerForm';
 import { CorrespondingPages } from './correspondingPages';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
@@ -22,8 +22,8 @@ export const DetailQuestion: React.FC<any> = (
   bookQuestionState,
 ): JSX.Element => {
   const [visible, setVisible] = useState(false);
-  console.log(bookQuestionState);
-
+  const reduxState = useSelector((state: ConbineState) => state);
+  const answers = reduxState.answers;
   const dispatch = useDispatch();
 
   const panes = [
@@ -32,28 +32,9 @@ export const DetailQuestion: React.FC<any> = (
       render: () => (
         <Tab.Pane attached={false}>
           {(() => {
-            if (0) {
+            if (answers.answersFromAuthor.answers.length ===0) {
               return (
                 <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                  <Card.Content>
-                    <Feed>
-                      <Feed.Event>
-                        <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
-                        <Feed.Content>
-                          <Feed.Date content="createdAt" />
-                          <Feed.Summary>
-                            回答内容をここに書いてください
-                          </Feed.Summary>
-                        </Feed.Content>
-                      </Feed.Event>
-                    </Feed>
-                  </Card.Content>
-                </Card>
-              );
-            }
-
-            return (
-              <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <Card.Content>
                   <Feed>
                     <Feed.Event>
@@ -64,17 +45,42 @@ export const DetailQuestion: React.FC<any> = (
                   </Feed>
                 </Card.Content>
               </Card>
+              );
+            }
+
+            return (
+              <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <Card.Content>
+                  <Feed>
+                    {answers.answersFromAuthor.answers.map((answer) => (
+                      <Feed.Event>
+                        <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                        <Feed.Content>
+                          <Feed.Date
+                            content={
+                              answer.createdAt
+                            }
+                          />
+                          <Feed.Summary>
+                            {answer.content}
+                          </Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    ))}
+                  </Feed>
+                </Card.Content>
+              </Card>
             );
           })()}
         </Tab.Pane>
       ),
     },
     {
-      menuItem: <Label>著者の回答</Label>,
+      menuItem: <Label>読者の回答</Label>,
       render: () => (
         <Tab.Pane attached={false}>
           {(() => {
-            if (0) {
+            if (answers.answersFromReader.answers.length === 0) {
               return (
                 <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                   <Card.Content>
@@ -94,15 +100,15 @@ export const DetailQuestion: React.FC<any> = (
               <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <Card.Content>
                   <Feed>
-                    <Feed.Event>
-                      <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
-                      <Feed.Content>
-                        <Feed.Date content="createdAt" />
-                        <Feed.Summary>
-                          回答内容をここに書いてください
-                        </Feed.Summary>
-                      </Feed.Content>
-                    </Feed.Event>
+                    {answers.answersFromReader.answers.map(answer => (
+                      <Feed.Event>
+                        <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
+                        <Feed.Content>
+                          <Feed.Date content={answer.createdAt} />
+                          <Feed.Summary>{answer.content}</Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    ))}
                   </Feed>
                 </Card.Content>
               </Card>
