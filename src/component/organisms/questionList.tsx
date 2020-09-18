@@ -1,7 +1,12 @@
 import React from 'react';
 import { Header, Divider, Table, Button } from 'semantic-ui-react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getBookDetailQuestion } from '../../actions/bookQuestion';
+import {
+  getAnswersFromAuthor,
+  getAnswersFromReader,
+} from '../../actions/getAnswers';
+import { getDetailQuestions } from '../../actions/getDetailQuestions';
 /* このquestionListを使って質問を表示 */
 export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
   console.log(questionList);
@@ -26,13 +31,28 @@ export const QuestionList: React.FC<any> = ({ questionList }): JSX.Element => {
               <Table.Cell>{question.title}</Table.Cell>
               <Table.Cell>
                 <Button
-                  onClick={() =>
+                  onClick={() => {
                     dispatch(
                       getBookDetailQuestion.start({
                         questionId: question.questionId,
                       }),
-                    )
-                  }
+                    );
+                    dispatch(
+                      getDetailQuestions.start({
+                        questionId: question.questionId,
+                      }),
+                    );
+                    dispatch(
+                      getAnswersFromAuthor.start({
+                        questionId: question.questionId,
+                      }),
+                    );
+                    dispatch(
+                      getAnswersFromReader.start({
+                        questionId: question.questionId,
+                      }),
+                    );
+                  }}
                 >
                   質問詳細へ
                 </Button>
