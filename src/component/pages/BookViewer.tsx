@@ -67,7 +67,10 @@ const BookViewer: FC<any | BookViewerProps> = (): JSX.Element => {
 
             <Sidebar.Pusher style={{ height: '100%' }}>
               <Segment style={{ height: '100%' }}>
-                <Viewer book={bookForViewerState.bookForViewer} />
+                <Viewer
+                  book={bookForViewerState.bookForViewer}
+                  setVisible={(on: boolean) => setVisible(on)}
+                />
               </Segment>
             </Sidebar.Pusher>
           </Sidebar.Pushable>
