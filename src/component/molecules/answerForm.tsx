@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBookQuestionList } from '../../actions/bookQuestion';
 import { PostReplyParams } from '../../services/forViewer/models';
 import { PostReply } from '../../services/forViewer/postAPI';
 import { ConbineState } from '../../reducer/index';
+import {
+  getAnswersFromAuthor,
+  getAnswersFromReader,
+} from '../../actions/getAnswers';
 
 export const AnswerForm: React.FC<any> = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
@@ -26,7 +29,16 @@ export const AnswerForm: React.FC<any> = (): JSX.Element => {
   const handleSubmit = async () => {
     setOpen(false);
     await PostReply(answerParams);
-    dispatch(getBookQuestionList.start({ chapterId: 1 }));
+    dispatch(
+      getAnswersFromAuthor.start({
+        questionId: answerParams.questionId,
+      }),
+    );
+    dispatch(
+      getAnswersFromReader.start({
+        questionId: answerParams.questionId,
+      }),
+    );
   };
 
   return (
