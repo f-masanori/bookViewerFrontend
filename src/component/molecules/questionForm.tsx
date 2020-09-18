@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Modal, Form, Input, TextArea } from 'semantic-ui-react';
+import { useDispatch } from 'react-redux';
 import { PostQuestion } from '../../services/forViewer/models';
 import { PostQuestionData } from '../../services/forViewer/postAPI';
+import { getBookQuestionList } from '../../actions/bookQuestion';
 
 export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
@@ -14,6 +16,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
     pageNum: 1,
     rowNum: 0,
   });
+  const dispatch = useDispatch();
 
   const handleChange = (input: any) => (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -24,6 +27,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const handleSubmit = async () => {
     setOpen(false);
     await PostQuestionData(questionParams);
+    dispatch(getBookQuestionList.start({ chapterId: 1 }));
   };
 
   return (
