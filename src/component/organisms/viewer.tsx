@@ -52,7 +52,7 @@ export const Viewer: React.FC<any> = ({ book }): JSX.Element => {
                       </button>
                       <p
                         style={{
-                          fontSize: '15pt'
+                          fontSize: '15pt',
                         }}
                       >
                         {sentence.content}
