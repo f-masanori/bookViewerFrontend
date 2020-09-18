@@ -24,6 +24,7 @@ export const DetailQuestion: React.FC<any> = (
   const [visible, setVisible] = useState(false);
   const reduxState = useSelector((state: ConbineState) => state);
   const answers = reduxState.answers;
+  const detailQuestions = reduxState.detailQuestions.detailQuestions;
   const dispatch = useDispatch();
 
   const panes = [
@@ -32,19 +33,19 @@ export const DetailQuestion: React.FC<any> = (
       render: () => (
         <Tab.Pane attached={false}>
           {(() => {
-            if (answers.answersFromAuthor.answers.length ===0) {
+            if (answers.answersFromAuthor.answers.length === 0) {
               return (
                 <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
-                <Card.Content>
-                  <Feed>
-                    <Feed.Event>
-                      <Feed.Content>
-                        <Feed.Summary>回答がありません</Feed.Summary>
-                      </Feed.Content>
-                    </Feed.Event>
-                  </Feed>
-                </Card.Content>
-              </Card>
+                  <Card.Content>
+                    <Feed>
+                      <Feed.Event>
+                        <Feed.Content>
+                          <Feed.Summary>回答がありません</Feed.Summary>
+                        </Feed.Content>
+                      </Feed.Event>
+                    </Feed>
+                  </Card.Content>
+                </Card>
               );
             }
 
@@ -52,18 +53,12 @@ export const DetailQuestion: React.FC<any> = (
               <Card style={{ marginLeft: 'auto', marginRight: 'auto' }}>
                 <Card.Content>
                   <Feed>
-                    {answers.answersFromAuthor.answers.map((answer) => (
+                    {answers.answersFromAuthor.answers.map(answer => (
                       <Feed.Event>
                         <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
                         <Feed.Content>
-                          <Feed.Date
-                            content={
-                              answer.createdAt
-                            }
-                          />
-                          <Feed.Summary>
-                            {answer.content}
-                          </Feed.Summary>
+                          <Feed.Date content={answer.createdAt} />
+                          <Feed.Summary>{answer.content}</Feed.Summary>
                         </Feed.Content>
                       </Feed.Event>
                     ))}
@@ -140,15 +135,15 @@ export const DetailQuestion: React.FC<any> = (
           }}
         >
           <Card.Content>
-            <Card.Header>質問タイトル</Card.Header>
+            <Card.Header>{detailQuestions.title}</Card.Header>
           </Card.Content>
           <Card.Content>
             <Feed>
               <Feed.Event>
                 <Feed.Label image="https://drive.google.com/uc?id=1H6_sJtNlwBIcRT4F6oDNY-1Eq4L-JiB3" />
                 <Feed.Content>
-                  <Feed.Date content="createdAt" />
-                  <Feed.Summary>質問内容をここに書いてください</Feed.Summary>
+                  <Feed.Date content={detailQuestions.createdAt} />
+                  <Feed.Summary>{detailQuestions.content}</Feed.Summary>
                 </Feed.Content>
               </Feed.Event>
             </Feed>
