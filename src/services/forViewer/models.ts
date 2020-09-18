@@ -10,7 +10,7 @@ export interface BookForViewer {
       sentences: {
         sentenceId: number;
         content: string;
-        questions: boolean; // (あり:0, なし:1)
+        hasQuestion: boolean; // (あり:0, なし:1)
       }[];
     }[];
   }[];
