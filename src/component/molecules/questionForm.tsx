@@ -21,7 +21,9 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
   const handleChange = (input: any) => (
     e: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    setQuestionParams({ ...questionParams, [input]: e.target.value });
+    let val: number | string = Number(e.target.value);
+    val = Number.isNaN(val) ? String(e.target.value) : Number(e.target.value);
+    setQuestionParams({ ...questionParams, [input]: val });
   };
 
   const handleSubmit = async () => {
@@ -29,6 +31,7 @@ export const QuestionForm: React.FC<any> = (): JSX.Element => {
     await PostQuestionData(questionParams);
     dispatch(getBookQuestionList.start({ chapterId: 1 }));
   };
+  console.log(questionParams);
 
   return (
     <Modal

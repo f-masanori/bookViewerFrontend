@@ -23,8 +23,8 @@ export const DetailQuestion: React.FC<any> = (
 ): JSX.Element => {
   const [visible, setVisible] = useState(false);
   const reduxState = useSelector((state: ConbineState) => state);
-  const answers = reduxState.answers;
-  const detailQuestions = reduxState.detailQuestions.detailQuestions;
+  const { answers } = reduxState;
+  const { detailQuestions } = reduxState.detailQuestions;
   const dispatch = useDispatch();
 
   const panes = [
