@@ -85,7 +85,7 @@ export const getAnswersFromReader = () => {
 
   const answerList = async (questionId: number) => {
     const { data } = await instance.get(
-      `/question/${questionId}/author/answer`,
+      `/question/${questionId}/reader/answer`,
     );
     const answersFromReader: AnswersFromReader = data;
 
@@ -104,7 +104,7 @@ export const getAnswersFromAuthor = () => {
 
   const answerList = async (questionId: number) => {
     const { data } = await instance.get(
-      `/question/${questionId}/reader/answer`,
+      `/question/${questionId}/author/answer`,
     );
     const answersFromAuthor: AnswersFromAuthor = data;
 
